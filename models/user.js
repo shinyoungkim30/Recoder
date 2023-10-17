@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-class User extends Sequelize.Model {
-  static initiate(sequelize) {
-    User.init({
+module.exports = class User extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init({
       email: {
         type: Sequelize.STRING(40),
         allowNull: true,
@@ -17,7 +17,7 @@ class User extends Sequelize.Model {
         allowNull: true,
       },
       provider: {
-        type: Sequelize.ENUM('local', 'kakao'),
+        type: Sequelize.STRING(10),
         allowNull: false,
         defaultValue: 'local',
       },
@@ -51,5 +51,3 @@ class User extends Sequelize.Model {
     });
   }
 };
-
-module.exports = User;

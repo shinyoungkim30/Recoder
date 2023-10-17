@@ -29,16 +29,16 @@ exports.login = (req, res, next) => {
       return next(authError);
     }
     if (!user) {
-      return res.redirect(`/?error=${info.message}`);
+      return res.redirect(`/?loginError=${info.message}`);
     }
     return req.login(user, (loginError) => {
       if (loginError) {
         console.error(loginError);
         return next(loginError);
       }
-      return res.redirect('/');
+      return res.redirect('/?머임');
     });
-  })(req, res, next);
+  })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 };
 
 exports.logout = (req, res) => {

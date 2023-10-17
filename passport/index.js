@@ -9,7 +9,7 @@ module.exports = () => {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findOne({ 
+    User.findOne({
       where: { id },
       include: [{
         model: User,
@@ -19,12 +19,12 @@ module.exports = () => {
         model: User,
         attributes: ['id', 'nick'],
         as: 'Followings',
-      }], 
+      }],
     })
-    .then(user => done(null, user))
-    .catch(err => done(err));
+      .then(user => done(null, user))
+      .catch(err => done(err));
   });
 
   local();
   kakao();
-}
+};

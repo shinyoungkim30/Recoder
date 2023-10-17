@@ -5,7 +5,7 @@ exports.renderProfile = (req, res) => {
 };
 
 exports.renderJoin = (req, res) => {
-  res.render('join', { title: '회원 가입 - NodeBird' });
+  res.render('join', { title: '회원가입 - NodeBird' });
 };
 
 exports.renderMain = async (req, res, next) => {
@@ -20,12 +20,12 @@ exports.renderMain = async (req, res, next) => {
     res.render('main', {
       title: 'NodeBird',
       twits: posts,
-    });    
-  } catch (error) {
-    console.error(error);
+    });
+  } catch (err) {
+    console.error(err);
     next(err);
   }
-};
+}
 
 exports.renderHashtag = async (req, res, next) => {
   const query = req.query.hashtag;
@@ -40,7 +40,7 @@ exports.renderHashtag = async (req, res, next) => {
     }
 
     return res.render('main', {
-      title: `${query} | nodeBird`,
+      title: `${query} | NodeBird`,
       twits: posts,
     });
   } catch (error) {

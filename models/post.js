@@ -1,8 +1,8 @@
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 
-class Post extends Sequelize.Model {
-  static initiate(sequelize) {
-    Post.init({
+module.exports = class Post extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init({
       content: {
         type: Sequelize.STRING(140),
         allowNull: false,
@@ -28,5 +28,3 @@ class Post extends Sequelize.Model {
     db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
   }
 };
-
-module.exports = Post;

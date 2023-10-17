@@ -1,8 +1,8 @@
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 
-class Hashtag extends Sequelize.Model {
-  static initiate(sequelize) {
-    Hashtag.init({
+module.exports = class Hashtag extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init({
       title: {
         type: Sequelize.STRING(15),
         allowNull: false,
@@ -25,4 +25,3 @@ class Hashtag extends Sequelize.Model {
   }
 };
 
-module.exports = Hashtag;
