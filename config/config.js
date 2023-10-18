@@ -2,24 +2,24 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    username: 'root',
+    username: process.env.SEQUELIZE_USERNAME,
     password: process.env.SEQUELIZE_PASSWORD,
     database: 'nodebird',
-    host: '127.0.0.1',
+    host: process.env.SEQUELIZE_HOST,
     dialect: 'mysql',
   },
   test: {
-    username: "root",
+    username: process.env.SEQUELIZE_USERNAME,
     password: process.env.SEQUELIZE_PASSWORD,
     database: "nodebird_test",
-    host: "127.0.0.1",
+    host: process.env.SEQUELIZE_HOST,
     dialect: "mysql"
   },
   production: {
-    username: 'root',
+    username: process.env.SEQUELIZE_USERNAME,
     password: process.env.SEQUELIZE_PASSWORD,
     database: 'nodebird',
-    host: '127.0.0.1',
+    host: process.env.SEQUELIZE_HOST,
     dialect: 'mysql',
     logging: false,
   },
