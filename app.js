@@ -47,8 +47,11 @@ app.use(cors({
     credentials: true
 }))
 // 요청과 응답에 대한 정보 출력
-// 이렇게 생긴 애들이 나옵니다 -> GET / 200 6.044 ms - 644
-app.use(morgan('dev'))
+if (process.env.NODE_ENV === 'production') {
+    app.use(morgan('combined'));
+} else {
+    app.use(morgan('dev'))
+}
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/img', express.static(path.join(__dirname, 'uploads')))
@@ -57,15 +60,20 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 // 쿠키 세션 설정
 app.use(cookieParser(process.env.COOKIE_SECRET))
-app.use(session({
+const sessionOption = {
     resave: false,
     saveUninitialized: false,
     secret: process.env.COOKIE_SECRET,
     cookie: {
         httpOnly: true,
-        secure: false
-    }
-}))
+        secure: false,
+    },
+};
+if (process.env.NODE_ENV === 'production') {
+    sessionOption.proxy = true;
+    // sessionOption.cookie.secure = true; -> https적용시에만
+}
+app.use(session(sessionOption));
 // 로그인 관련 (passport 모듈)
 app.use(passport.initialize())
 app.use(passport.session())

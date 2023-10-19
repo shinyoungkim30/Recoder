@@ -1,31 +1,26 @@
 require('dotenv').config();
-const env = process.env;
 
-const development = {
-  username: env.MYSQL_USERNAME,
-  password: env.MYSQL_PASSWORD,
-  database: env.MYSQL_DATABASE,
-  host: env.MYSQL_HOST,
-  dialect: "mysql",
-  //port: env.MYSQL_PORT
+module.exports = {
+  development: {
+    username: process.env.SEQUELIZE_USERNAME,
+    password: process.env.SEQUELIZE_PASSWORD,
+    database: 'recoder',
+    host: process.env.SEQUELIZE_HOST,
+    dialect: 'mysql',
+  },
+  test: {
+    username: process.env.SEQUELIZE_USERNAME,
+    password: process.env.SEQUELIZE_PASSWORD,
+    database: "recoder",
+    host: process.env.SEQUELIZE_HOST,
+    dialect: "mysql"
+  },
+  production: {
+    username: process.env.SEQUELIZE_USERNAME,
+    password: process.env.SEQUELIZE_PASSWORD,
+    database: 'recoder',
+    host: process.env.SEQUELIZE_HOST,
+    dialect: 'mysql',
+    logging: false,
+  },
 };
-
-const production = {
-  username: env.MYSQL_USERNAME,
-  password: env.MYSQL_PASSWORD,
-  database: env.MYSQL_DATABASE,
-  host: env.MYSQL_HOST,
-  dialect: "mysql",
-  //port: env.MYSQL_PORT
-};
-
-const test = {
-  username: env.MYSQL_USERNAME,
-  password: env.MYSQL_PASSWORD,
-  database: env.MYSQL_DATABASE_TEST,
-  host: env.MYSQL_HOST,
-  dialect: "mysql",
-  //port: env.MYSQL_PORT
-};
-
-module.exports = { development, production, test };
