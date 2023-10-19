@@ -1,0 +1,33 @@
+/* #in01_tb_div{
+    margin-left: 10%;
+    margin-right : 10%;
+    width: 80%;
+    height: max-content;
+  
+} */
+
+
+
+:where(.css-dev-only-do-not-override-i0102m).ant-table-wrapper .ant-table-pagination.ant-pagination {
+    margin: 16px 0;
+    display: none;
+}
+
+
+:where(.css-dev-only-do-not-override-i0102m).ant-table-wrapper .ant-table-thead >tr>th, :where(.css-dev-only-do-not-override-i0102m).ant-table-wrapper .ant-table-thead >tr>td {
+    position: relative;
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 600;
+    text-align: center;
+    background: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+   
+}
+.ant-table-cell{
+    text-align: center;
+}
+
+/* 체크박스 삭제 */
+/* .ant-table-row-expand-icon-cell{
+    display: none;
+} */

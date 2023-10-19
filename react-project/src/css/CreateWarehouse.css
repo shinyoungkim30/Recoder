@@ -1,0 +1,140 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+#webgl-container {
+    /* flex: 1; */
+    /* position: relative; */
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: green;
+}
+.create-warehouse-container > .btn-wrapper {
+    & input[type=number] {
+        width: 75px;
+    }
+}
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 5rem; */
+
+    position: absolute;
+    right: 10px;
+    top: 30px;
+
+    & button {
+        z-index: 1;
+        position: relative;
+    }
+}
+
+
+.modal-open-btn {
+    cursor: pointer;
+    margin-left: auto;
+
+    /* background-color: #b791fd; */
+
+     border-style:solid;
+    border-radius: 10px;
+    border-color: rgb(139, 139, 139);
+    /* border: none; */
+    /* Remove the border */
+    border-radius: 5px;
+    background-color: whitesmoke;
+    z-index: 1;
+}
+
+
+.modal-open-btn:hover {
+    background-color: rgba(61, 61, 61, 0.04);
+    box-shadow:
+      -7px -7px 20px 0px #fff9,
+      -4px -4px 5px 0px #fff9,
+      7px 7px 20px 0px #0002,
+      4px 4px 5px 0px #0001;
+  }
+
+.modal-close-btn {
+    cursor: pointer;
+    margin-left: auto;
+    outline: none;
+    border: none !important;
+    background-color: #e8defb;
+}
+
+.modal-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #e8defb;
+    width: 500px;
+    height: 700px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+.rack_create_title h1 {
+    font-family: 'Pretendard-Regular', sans-serif;
+
+}
+
+
+
+
+.rack_create_submit_button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rack_create_submit_button button {
+    background-color: #b791fd;
+    border: none;
+    /* Remove the border */
+    border-radius: 5px;
+    color: whitesmoke;
+    padding: 10px 20px;
+    /* Add some padding */
+    font-size: 16px;
+    /* Increase font size */
+    font-weight: bold;
+    /* Make the text bold */
+    cursor: pointer;
+    /* Change cursor on hover */
+}
+
+.rack_create_submit_button button:hover {
+    background-color: #b791fd;
+    color: black;
+    font-weight: bold;
+}
+
+
+
+.createWarehouse {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* .rack_create_container input {
+    border-radius: 7px;
+} */

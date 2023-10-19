@@ -1,0 +1,98 @@
+#ware-container {
+  padding: 0 36px;
+  flex: 1;
+}
+#ware-header {
+  width: 100%;
+  height: 84px;
+  padding: 12px 0;
+}
+#ware-header span {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+#ware-create-button {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 24px;
+}
+#ware-create-button a {
+  padding: 5px 0;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+#ware-create-button a:hover {
+  width: 95.36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+#ware-create-button a > button {
+  border: none;
+  background: transparent;
+}
+#ware-item-box {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+}
+#ware-cardlist-item {
+  width: 300px;
+  height: 400px;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+#ware-cardlist-item:hover {
+  box-shadow: 3px 3px 10px #e3e5e8;
+}
+#ware-preview {
+  flex: 2;
+  border-bottom: 1px solid #e3e5e8;
+  padding: 12px;
+}
+#ware-preview div {
+  background-color: aliceblue;
+  border-radius: 8px;
+  height: 100%;
+}
+#ware-detail {
+  flex: 1;
+  padding: 12px;
+}
+.ware-select-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: end;
+  padding: 6px;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+}
+.ware-select-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.ware-select-button button {
+  border: none;
+  background: transparent;
+}
+#ware-delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: end;
+  padding: 6px;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+}
+#ware-delete-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+#ware-delete-button button {
+  border: none;
+  background: transparent;
+}

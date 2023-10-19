@@ -1,0 +1,44 @@
+#stock-container {
+  padding: 0 36px;
+  flex: 1;
+}
+#stock-header {
+  width: 100%;
+  height: 84px;
+  padding: 12px 0;
+}
+#stock-header span {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+#stock-filter {  
+  width: 100%;
+  height: 32px;
+  /* background-color: lightblue; */
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#stock-input-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#stock-input-box {
+  display: flex;
+  width: 80px;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+  border-radius: 33px;
+  text-align: left;
+  padding: 3px 4px;
+}
+#stock-input {
+  flex: 1;
+  width: 40px;
+  line-height: 24px;
+  border: none;
+  outline: none;
+  padding-left: 4px;
+  background: transparent;
+}

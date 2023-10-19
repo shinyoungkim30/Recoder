@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#layout-container {
+  display: flex;
+}
+
+#menu_div {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #efefef;
+}
+
+#sidebar-top {
+  padding: 24px;
+}
+
+#dashboard {
+  padding: 0 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#dashboard-header {
+  padding: 12px;
+  width: 100%;
+  height: 84px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+#dashboard-body1,
+#dashboard-body2 {
+  background-color: white;
+  display: flex;
+}
+
+#dashboard-item2,
+#dashboard-item3,
+#dashboard-item4 {
+  width: 750px;
+  height: 400px;
+  margin: 12px;
+  /* flex: 1; */
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+  border-radius: 8px;
+  padding: 12px;
+  overflow: hidden;
+}
+#dashboard-item1 {
+  width: 750px;
+  height: 400px;
+  margin: 12px;
+  /* flex: 1; */
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+}
+#current {
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+  border-radius: 8px;
+  padding: 12px;
+  width: 200px;
+  margin-bottom: 100px;
+}
+
+#current-container {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+#current-header {
+  border-bottom: 1px solid #e3e5e8;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+.current-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+#dashboard-table {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+}
+
+.dashboard-item-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  margin-bottom: 12px;
+}
+
+.dashboard-item-header > span {
+  font-size: 1.2rem;
+}
+.dashboard-item-header > div button {
+  border: none;
+  background: transparent;
+}
+.dashboard-item-header > div svg {
+  margin-left: 10px;
+}
+.dashboard-item-header > div a {
+  color: black;
+}
+#dashboard-warelist {
+  flex: 1;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+  border-radius: 8px;
+  margin-left: 24px;
+  padding: 12px;
+}
+
+#sidebar-wh{
+  padding: 12px;
+  margin: 12px;
+  box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+  border-radius: 8px;
+}

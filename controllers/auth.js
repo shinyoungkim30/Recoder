@@ -1,48 +1,118 @@
-const bcrypt = require('bcrypt');
-const passport = require('passport');
-const User = require('../models/user');
+const bcrypt = require('bcrypt')
+const passport = require('passport')
+const { User, Company } = require('../models')
 
 exports.join = async (req, res, next) => {
-  const { email, nick, password } = req.body;
+  console.log('요청');
+  let { user_id, user_pw, user_nick, user_cname } = req.body
   try {
-    const exUser = await User.findOne({ where: { email } });
-    if (exUser) {
-      return res.redirect('/join?error=exist');
-    }
-    const hash = await bcrypt.hash(password, 12);
-    await User.create({
-      email,
-      nick,
-      password: hash,
+    const exUser = await User.findOne({
+      where: {
+        user_id: user_id,
+      }
     });
-    return res.redirect('/');
+    if (exUser) {
+      return res.status(403).send('이미 사용 중인 아이디입니다.');
+    }
+    const hashedPassword = await bcrypt.hash(user_pw, 12);
+    await User.create({
+      user_id: user_id,
+      user_pw: hashedPassword,
+      user_nick: user_nick,
+      user_cname: user_cname,
+    });
+    res.status(201).send('ok');
   } catch (error) {
     console.error(error);
-    return next(error);
+    next(error); // status 500
   }
 }
 
 exports.login = (req, res, next) => {
-  passport.authenticate('local', (authError, user, info) => {
-    if (authError) {
-      console.error(authError);
-      return next(authError);
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      console.error(err);
+      return next(err);
     }
-    if (!user) {
-      return res.redirect(`/?loginError=${info.message}`);
+    if (info) {
+      return res.status(401).send(info.reason);
     }
-    return req.login(user, (loginError) => {
-      if (loginError) {
-        console.error(loginError);
-        return next(loginError);
+    return req.login(user, async (loginErr) => {
+      if (loginErr) {
+        console.error(loginErr);
+        return next(loginErr);
       }
-      return res.redirect('/?머임');
+      const fullUserWithoutPassword = await User.findOne({
+        where: { user_id: user.user_id },
+        attributes: {
+          exclude: ['user_pw']
+        },
+        include: [{
+          model: Company
+        }]
+      })
+      return res.status(200).json(fullUserWithoutPassword);
     });
-  })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
-};
+  })(req, res, next);
+}
 
 exports.logout = (req, res) => {
   req.logout(() => {
-    res.redirect('/');
+    req.session.destroy();
+    res.send('ok');
   });
-};
+}
+
+exports.checkId = async (req, res) => {
+  try {
+    const checkId = await User.findOne({
+      where: { user_id: req.body.id } 
+    })
+    if (checkId === null) {
+      res.send('회원가입 가능')
+    } else {
+      res.send('아이디 중복')
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+exports.updateUser = async (req, res) => {
+  let { currentPW, newPW, nick } = req.body
+  try {
+    const result = await bcrypt.compare(currentPW, req.user.user_pw);
+    if (result) {
+      if (newPW) {
+        const hashedPassword = await bcrypt.hash(newPW, 12);
+        if (nick) {
+          await User.update({
+            user_pw: hashedPassword,
+            user_nick: nick
+          }, {
+            where: {
+              user_id: req.user.user_id
+            }
+          })
+          res.send('ok')      
+        } else {
+          await User.update({
+            user_pw: hashedPassword,
+            user_nick: req.user.user_nick
+          }, {
+            where: {
+              user_id: req.user.user_id
+            }
+          })
+          res.send('ok')  
+        }
+      } else {
+        res.send('새로운 비밀번호를 입력하세요.')
+      }
+    } else {
+      res.send('기존 비밀번호가 일치하지 않습니다.')
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}

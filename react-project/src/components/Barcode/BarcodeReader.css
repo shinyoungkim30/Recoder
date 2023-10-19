@@ -1,0 +1,48 @@
+.modal_background {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_top {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal_header{
+    font-size: 24px;
+    margin: 24px 0px;
+    font-weight: 600;
+}
+
+.modal_row {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0px;
+}
+
+.modal_row_center {
+    margin: 24px 0px;
+}
+
+#barcodeImage {
+    width: 466px;
+    height: 144px;
+    border: 1px dashed black;
+}

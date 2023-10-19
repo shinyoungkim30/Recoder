@@ -1,0 +1,207 @@
+
+/* #in_all {
+	padding: 5%;
+	position: relative;
+} */
+/* height: 100vh; */
+
+body {
+	/* overflow-y: visible; */
+	overflow-y: auto;
+	/* overflow-x: hidden; */
+}
+
+/* * {
+	overflow-y: auto;
+} */
+
+#in_top {
+	height: 20%;
+	box-sizing: border-box;
+	position: relative;
+	background-color: #FFF;
+	border: 1px solid rgba(107, 107, 107, 0.1);
+	border-radius: 2px;
+	align-content: space-around;
+}
+
+#in_title {
+	display: block;
+	margin: 20px;
+	font-size: large;
+}
+
+#in_input_container {
+    width: 100%;
+    height: 23px;
+    display: flex;
+    margin-left: 20px;
+}
+
+#in_input {
+	width: 150px;
+	height: 100%;
+}
+
+#out_filter{
+	width: 150px;
+	color: darkgray;
+}
+
+/* 테이블 */
+
+.in_table {
+	flex-direction: column;
+	margin: 20px;
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+.in_table_container {
+	background: linear-gradient(45deg, #cfdaf7, #726bf1)
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	/* overflow: scroll; */
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+td {
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+	}
+	td {
+		position: relative;
+
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255, 255, 255, 0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+
+
+/* div태그(table의 부모) */
+.table-none {
+	/* display: span; */
+	box-shadow: none;
+	margin: 0 20px;
+	/* width: 100%; */
+
+	background: linear-gradient(45deg, #cfdaf7, #726bf1);
+	/* table태그 */
+	& > table {
+		table-layout: fixed;
+		& > thead th {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			color: black;
+			text-align: center;
+		}
+
+	}
+}
+
+
+
+.table-none tbody {
+	background-color: #e6edff;
+	
+	&>tr {
+		/* height: 100px; */
+		white-space: nowrap;
+	}
+	& td {
+		position: relative;
+		color: black; /* 글씨 색깔*/
+		border-right: solid 1px #000;
+		border-bottom: solid 1px #000;
+		text-align: center;
+		
+	}
+	& img {
+		position: absolute;
+		height: 100%;
+		top: 0;
+		/* margin: auto; */
+		left: 0px;
+		width: 100%;
+		object-fit: contain;
+		
+	}
+	
+	& tr :nth-child(5) span{
+		display: flex;
+		& input {
+			width: 100%;
+			/* overflow: hidden; */
+		}
+		& input:focus {
+			overflow: hidden;
+		}
+		& input:hover {
+			overflow: hidden;
+		}
+		/* & input[type='number']::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			
+		} */
+		& input[type='number']::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+		}
+	}
+
+	/* td태그 */
+	& #newItem :nth-child(4) {
+		padding: 0;
+		/* display: inline-block; */
+		/* background-color: yellow; */
+
+		/* td > label 태그 */
+		&>label{
+			display: inline-block;
+			line-height: normal;
+			vertical-align: middle;
+			cursor: pointer;
+			border-radius: 10px;
+			/* background-color: yellowgreen; */
+			padding: 10px;
+			width: 90%;
+			text-wrap: wrap;
+			border: 1px solid #a0a0a0; 
+		}
+		/* td > input 태그 */
+		& > input[type='file'] {
+			display: flex;
+			width: 1px;
+			height: 1px;
+			padding: 0px;
+			overflow: hidden;
+			clip:rect(0,0,0,0);
+			border: 0;
+			position: absolute;
+		}
+	}
+}

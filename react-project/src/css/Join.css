@@ -1,0 +1,224 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.join_main * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard-Regular", sans-serif;
+}
+
+.join_main body {
+  background: url(../../public/img/warehouse_bg2.jpg);
+  background-position: center;
+  background-size: cover;
+
+  min-height: 100vh;
+  width: 100%;
+}
+
+.join_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.join_form_box {
+  position: relative;
+  width: 400px;
+  height: 650px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.join_form_box h2 {
+  color: white;
+  text-align: center;
+  font-size: 32px;
+}
+
+.join_form_box .input_box {
+  position: relative;
+  margin: 32px 0;
+  width: 310px;
+  border-bottom: 2px solid #fff;
+}
+
+.join_form_box .input_box input {
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 20px 0 5px;
+  font-size: 16px;
+}
+
+.input_box {
+  position: relative;
+  margin: 30px 0;
+  width: 310px;
+  border-bottom: 2px solid #fff;
+
+}
+
+.input_box label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.input_box input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 35px 0 5px;
+  color: #fff;
+}
+
+.join_main {
+
+  & input:focus~label,
+  & input:valid~label {
+    top: -5px;
+  }
+}
+
+.id-check {
+  color: #fff;
+  /* background: #b791fd; */
+  background: transparent;
+  width: 30%;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  border: #b791fd solid 2px;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  transition-duration: 0.2s;
+}
+
+.id-check:active {
+  color: #fff;
+  /* background: #b791fd; */
+  background: transparent;
+  width: 30%;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  border: #b791fd solid 2px;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.duplicate-message {
+  /* color: rgb(255, 50, 50); */
+  color: red;
+}
+
+/* .join_button{
+  color: #fff;
+  background: #b791fd;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+  transition-duration: 0.2s;
+}
+
+.join_button:active{
+  color: #fff;
+  background: #b791fd;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: none;
+} */
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+  }
+}
+
+.submit_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.join_button {
+  display: inline-block;
+  position: relative;
+  border: none;
+  min-width: 200px;
+  min-height: 50px;
+  /* background: linear-gradient(90deg,
+      rgba(129, 230, 217, 1) 0%,
+      rgba(79, 209, 197, 1) 100%); */
+  background: linear-gradient(90deg,
+      #b791fd 0%,
+      #b791fd 100%);
+  border-radius: 1000px;
+  /* color: darkslategray; */
+  color: white;
+  cursor: pointer;
+  /* box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64); */
+  /* box-shadow: 12px 12px 24px #b791fd; */
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.join_button:hover {
+  transform: scale(1.2);
+}
+
+.join_button:hover::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  /* border: 6px solid #00ffcb; */
+  border: 6px solid #a371ff;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}

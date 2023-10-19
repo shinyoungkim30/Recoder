@@ -1,0 +1,21 @@
+#out_des_container{
+    display: flex;
+    flex-direction: row;
+}
+
+#doughnut_1 {
+    margin: 5%;
+}
+
+
+#des_div {
+    display: flex;
+    margin: 10%;
+    align-items: center;
+    justify-content: center;
+}
+
+#des_table{
+    font-size: 15px;
+}
+

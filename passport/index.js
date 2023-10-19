@@ -1,30 +1,21 @@
-const passport = require('passport');
-const local = require('./localStrategy');
-const kakao = require('./kakaoStrategy');
-const User = require('../models/user');
+const passport = require('passport')
+const local = require('./localStrategy')
+const User = require('../models/user')
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
-    done(null, user.id);
-  });
+      done(null, user.user_id)
+  })
 
-  passport.deserializeUser((id, done) => {
-    User.findOne({
-      where: { id },
-      include: [{
-        model: User,
-        attributes: ['id', 'nick'],
-        as: 'Followers',
-      }, {
-        model: User,
-        attributes: ['id', 'nick'],
-        as: 'Followings',
-      }],
-    })
-      .then(user => done(null, user))
-      .catch(err => done(err));
-  });
+  passport.deserializeUser(async (user_id, done) => {
+    try {
+        const user = await User.findOne({ where: { user_id }});
+        done(null, user); // req.user
+      } catch (error) {
+        console.error(error);
+        done(error);
+      }
+  })
 
-  local();
-  kakao();
-};
+  local()
+}

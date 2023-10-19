@@ -1,0 +1,188 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+#ware_manage_all {
+    padding: 5%;
+    position: relative;
+    width: 100%;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+}
+
+#ware_manage_top {
+    height: 200px;
+    background: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.ware_manage_table {
+    height: 80%;
+    padding: 20px;
+    
+}
+
+
+
+.ware_manage_title {
+    margin: 0; /* margin 제거 */
+    line-height: 50px; /* line-height 설정 */
+    overflow: hidden;
+}
+
+.ware_manage_title h1 {
+    overflow: hidden;
+    margin: 0; /* margin 제거 */
+}
+
+
+/* 내용부분 시작 */
+.ware_manage_content {
+    max-height: 600px;
+    overflow:auto;
+}
+
+.ware_manage_content::-webkit-scrollbar {
+    width: 10px; /* 스크롤바의 너비 */
+}
+
+.ware_manage_content::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤바의 배경색 */
+}
+
+.ware_manage_content::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤바 핸들(움직이는 부분)의 색상 */
+}
+
+.ware_manage_content::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 마우스 오버 시 핸들 색상 */
+}
+/* 내용부분 끝 */
+
+
+/* 창고 생성 버튼 */
+.ware_button_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ware_button_container button {
+    background-color: #b791fd;
+    border: none; /* Remove the border */
+    border-radius: 5px;
+    color: whitesmoke;
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.ware_button_container button:hover {
+    background-color: #b791fd;
+    color: black;
+    font-weight: bold;
+}
+/* 창고 생성 버튼 끝 */
+
+
+
+/* container 관련 css */
+.ware_container {
+    text-align: left;
+    /* overflow: hidden; */
+    width: 100%;
+    margin: 0 auto;
+    display: table;
+    padding: 0 0 8em 0;
+    
+    
+}
+
+.ware_container th h1 {
+    font-family: "Pretendard-Regular";
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: #ffffff;
+}
+
+.ware_container td {
+    font-family: "Pretendard-Regular";
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+    -moz-box-shadow: 0 2px 2px -2px #0E1119;
+    box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.ware_container th,
+.ware_container td {
+    color: black;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+.ware_container tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.ware_container tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.ware_container th {
+    background-color: #b791fd;
+}
+
+.ware_container td:first-child {
+    color: #b791fd;
+}
+
+.ware_container td:first-child:hover {
+    color: white
+}
+
+.ware_container tr:hover {
+    background-color: #e8defb;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.ware_container h1 {
+    overflow: hidden;
+}
+/* container 관련 css 끝 */
+
+
+.ware_container th:nth-child(1),
+.ware_container td:nth-child(1) {
+    width: 25%; /* 예시로 25% 설정, 실제 필요한 비율에 맞게 조절하세요 */
+}
+
+.ware_container th:nth-child(2),
+.ware_container td:nth-child(2) {
+    width: 20%;
+}
+
+.ware_container th:nth-child(3),
+.ware_container td:nth-child(3) {
+    width: 20%;
+}
+
+.ware_container th:nth-child(4),
+.ware_container td:nth-child(4) {
+    width: 35%;
+}
