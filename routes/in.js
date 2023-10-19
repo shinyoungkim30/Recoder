@@ -2,12 +2,14 @@ const express = require('express')
 const multer = require('multer')
 const path = require('path')
 const fs = require('fs')
+const { S3Client } = require('@aws-sdk/client-s3');
+const multerS3 = require('multer-s3');
 
 const { updateStockAfterUploadImg } = require('../controllers/img')
-
-const router = express.Router()
 const { Loading, Stock, Client } = require('../models'); // 모델들을 import
 const { Op, fn, col, NOW, Model, where } = require('sequelize');
+
+const router = express.Router()
 
 // 이미지 업로드 관련
 // -----------------------------
@@ -17,18 +19,24 @@ try {
     fs.mkdirSync('uploads')
 }
 
+const s3 = new S3Client({
+    credentials: {
+        accessKeyId: process.env.S3_ACCESS_KEY_ID,
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+    },
+    region: 'ap-northeast-2',
+});
+
 const upload = multer({
-    storage: multer.diskStorage({
-        destination(req, file, done) {
-            done(null, 'uploads')
-        },
-        filename(req, file, done) {
-            const ext = path.extname(file.originalname)
-            done(null, path.basename(file.originalname, ext) + Date.now() + ext)
+    storage: multerS3({
+        s3,
+        bucket: 'recoderbucket',
+        key(req, file, cb) {
+            cb(null, `original/${Date.now()}_${file.originalname}`);
         },
     }),
     limits: { fileSize: 5 * 1024 * 1024 },
-})
+});
 
 router.post('/img', upload.single('file'), updateStockAfterUploadImg)
 // --------------------------------------------------------------------------------

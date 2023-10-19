@@ -6,7 +6,7 @@ exports.updateStockAfterUploadImg = async (req, res) => {
 
   try {
     const result = await Stock.update({
-      stock_img: `${req.file.filename}`
+      stock_img: `${req.file.location}`
     }, {
       where: { stock_seq: stock_seq }
     })
