@@ -6,8 +6,19 @@ const session = require('express-session')
 const dotenv = require('dotenv')
 const passport = require('passport')
 const cors = require('cors')
+const helmet = require('helmet');
+const hpp = require('hpp');
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
 
 dotenv.config()
+const redisClient = redis.createClient({
+    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+    password: process.env.REDIS_PASSWORD,
+    legacyMode: true,
+});
+redisClient.connect().catch(console.error);
+
 //혜주작성
 const outRouter = require('./routes/out')
 const userRouter = require('./routes/user')
@@ -22,6 +33,7 @@ const warehouseRouter = require('./routes/warehouse')
 // sequelize 연결
 const { sequelize } = require('./models')
 const passportConfig = require('./passport')
+const logger = require('./logger');
 const webSocket = require('./socket');
 
 const app = express()
@@ -49,11 +61,23 @@ app.use(cors({
 // 요청과 응답에 대한 정보 출력
 if (process.env.NODE_ENV === 'production') {
     app.use(morgan('combined'));
+    app.use(
+        helmet({
+            contentSecurityPolicy: false,
+            crossOriginEmbedderPolicy: false,
+            crossOriginResourcePolicy: false,
+        }),
+    );
+    app.use(hpp());
 } else {
     app.use(morgan('dev'))
 }
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'react-project/build')))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'react-project/build/index.html'))
+})
+
 app.use('/img', express.static(path.join(__dirname, 'uploads')))
 // json으로 받기
 app.use(express.json())
@@ -68,6 +92,7 @@ const sessionOption = {
         httpOnly: true,
         secure: false,
     },
+    store: new RedisStore({ client: redisClient }),
 };
 if (process.env.NODE_ENV === 'production') {
     sessionOption.proxy = true;
@@ -92,6 +117,14 @@ app.use('/rack', rackRouter)
 app.use('/warehouse', warehouseRouter)
 
 app.use('/stock', stockRouter)
+
+app.use((req, res, next) => {
+    const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+    error.status = 404;
+    logger.info('hello');
+    logger.error(error.message);
+    next(error);
+});
 
 const server = app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
