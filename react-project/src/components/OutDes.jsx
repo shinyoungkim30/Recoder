@@ -34,9 +34,7 @@ function OutDes() {
       const response = await axios.post('http://localhost:8000/out/des/name', userData)
 
       if (response.status === 200) {
-        console.log('출고품 정보 가져오기 성공');
 
-        console.log("out/des/test", response.data)
 
         setDesData(response.data)
       }
@@ -62,13 +60,11 @@ function OutDes() {
 
   // 차트항목 클릭 이벤트 작동
   const handleRowClick = (idx, item) => {
-    console.log('클릭  인덱스', idx);
     setRowOutTable((prevRowOutTable) => {
       const newRowOutTable = [...prevRowOutTable];
       newRowOutTable[idx] = !newRowOutTable[idx];
       return newRowOutTable;
     });
-    console.log('클릭한 항목', item);
     let stock_name = {
       wh_seq: wh_seq,
       stock_name: item
@@ -82,7 +78,6 @@ function OutDes() {
 
         if (response.status === 200) {
 
-          console.log("특정제품 데이터", response.data)
           setCharData(response.data)
 
         };
@@ -108,10 +103,8 @@ function OutDes() {
   // 기간 설정 함수
   const sDate = (e) => {
     if (e.target.name == 'day1') {
-      console.log("시작", e.target.value);
       setDateData({ ...dateData, day1: e.target.value })
     } else {
-      console.log("끝", e.target.value);
       setDateData({ ...dateData, day2: e.target.value })
     }
 
@@ -119,7 +112,6 @@ function OutDes() {
 
   // 기간 조회 버튼 클릭
   const reSdate = () => {
-    console.log('조회기간', dateData);
   }
 
   const labels = charData.map(item => item.Loading.stock_shipping_des);

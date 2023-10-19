@@ -10,7 +10,6 @@ const WareList = ({ comSeq }) => {
   useEffect(() => {
     axios.get(`http://localhost:8000/ware/shortList/${comSeq}`)
     .then((res) => {
-      console.log(res.data);
       setWarehouseList(res.data);
     })
     .catch((err) => {

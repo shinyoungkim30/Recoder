@@ -57,14 +57,6 @@ const Join = () => {
         }
 
         try {
-
-            axios.get('http://localhost:8000/user/test')
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((err) => {
-                    console.error(err);
-                })
             const response = await axios.post('http://localhost:8000/user', {
                 user_id: formData.user_id,
                 user_pw: formData.user_pw,
@@ -85,16 +77,12 @@ const Join = () => {
     };
 
     const searchCompany = () => {
-        console.log('검색버튼');
         setComNum(comNumRef.current.value)
-        console.log(comNum);
     }
 
     useEffect(() => {
-        console.log('회사정보 요청');
         axios.get(`http://localhost:8000/company/${comNum}`)
             .then((res) => {
-                console.log(res);
                 if (res.data[0]) {
                     setComName(res.data[0].com_name)
                     alert('완료')

@@ -41,8 +41,6 @@ function Notice({ selectWhSeq, setSelectWhSeq }) {
   const changeCnt = (record, text) => {
     setIsModalOpen(true);
 
-    console.log("크크킄클릭", record.stock_name);
-    console.log("클릭된 아이템의text:", text);
     setChangeName({ ...changeName, stock_name: record.stock_name });
   };
 
@@ -66,8 +64,6 @@ function Notice({ selectWhSeq, setSelectWhSeq }) {
       ])
       .then(
         axios.spread((res1, res2) => {
-          console.log("res1",res1.data);
-          console.log('alarm',res2.data);
           setCntData(res1.data);
           setStockCount(res1.data.length);
           setAlarm(res2.data);
@@ -88,7 +84,7 @@ function Notice({ selectWhSeq, setSelectWhSeq }) {
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
-          console.log(error);
+          console.error(error);
         }
         // 오류 처리
       });

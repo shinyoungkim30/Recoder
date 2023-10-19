@@ -18,7 +18,6 @@ const Out_02 = ({ comSeq, selectWhSeq, setSelectWhSeq }) => {
   useEffect(() => {
     axios.get(`http://localhost:8000/wh_name/${comSeq}`)
     .then((res) => {
-      console.log('창고 이름 리스트', res);
     })
     .catch((err) => {
       console.error(err);
@@ -48,9 +47,7 @@ const Out_02 = ({ comSeq, selectWhSeq, setSelectWhSeq }) => {
       );
 
       if (response.status === 200) {
-        console.log("출고예정 리스트 가져오기 성공");
 
-        console.log(response.data);
 
         setOutLoadingList(response.data);
       }

@@ -50,13 +50,7 @@ export default class App {
             const found = this._raycaster.intersectObjects(this._scene.children, true);
             
             if(found.length > 0) { // 물체를 선택했을 경우
-                // found.map(item => {
-				// 	console.log(item.object.name)d
-				// })
                 if(found[0].object.parent && found[0].object.parent.parent) {
-                    // console.log("1 found[0].point", found[0].point.x)
-                    // console.log("2 클릭 메쉬 이름", found[0].object.parent.parent.name); // super 그룹 객체  --> supergroup > group * n개 > mesh, 기둥4개
-                    // console.log("3 클릭 메쉬 포지션", found[0].object.parent.parent.position);
                     this._raycaster._selectedMesh = found[0].object.parent.parent;
                 }
 
@@ -65,9 +59,7 @@ export default class App {
                     if(!this._isUp) { // isUP -> false
                         this._raycaster._selectedMesh.position.y += 1;
                         this._isUp = true
-                        console.log("선택됨")
                     } else { // 물체가 올라가 있는 경우 isUP -> true
-                        // console.log(found[0].point)
 
                         if(this._canMove) {
                             this._canMove = false;
@@ -77,14 +69,12 @@ export default class App {
                             setTimeout(() => {
                                 this._raycaster._selectedMesh.position.y -= 1;
                                 this._raycaster._selectedMesh = null
-                                console.log('선택 끝, 객체 null')
                                 this._canMove = true;
                                 this._isUp = false
                             }, 10); // 1초후 실행
                         }
                     }
                 } else {
-                    console.log("_selectedMesh -> null 없음")
                 }
             }
 
@@ -119,46 +109,7 @@ export default class App {
     }
 
     _setupModel() {
-        // const geometry = new THREE.ConeGeometry();
-        // const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
-        // const cube = new THREE.Mesh(geometry, fillMaterial);
         
-        // const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
-        // const line = new THREE.LineSegments(
-            //     new THREE.WireframeGeometry(geometry), lineMaterial
-            // );
-            
-        // const group = new THREE.Group()
-        // group.add(cube);
-        // group.add(line);
-        
-        // const group2 = group.clone();
-        // group2.position.set(3, 4, 5)
-        
-        // this._scene.add(group);
-        // this._scene.add(group2);
-        // this._cube = group;
-        
-        // console.log(group.position)
-        // console.log(group2.position)
-        
-        // const loader = new GLTFLoader();
-
-        // loader.load(fork, (gltf) => {
-            
-            //     console.log(gltf);
-            
-            //     gltf.scene.scale.set(0.2, 0.2, 0.2)
-            
-            //     gltf.scene.rotation.y = Math.PI;
-            
-            //     this._scene.add(gltf.scene);
-            
-            // }, undefined, (error) => {
-                
-                //     console.error(error);
-                
-                // });
 
         // 바닥 시작
         const geometry = new THREE.BoxGeometry(100, 0.01, 100);
@@ -232,9 +183,7 @@ export default class App {
         );
         pilarMesh2.position.set(box.max.x, box.min.y + (box1.max.y - box1.min.y)/2- (box1.max.y - box1.min.y)*0.2, box.min.z);
         pilarMesh3.position.set(box.max.x, box.min.y + (box1.max.y - box1.min.y)/2- (box1.max.y - box1.min.y)*0.2, box.max.z);
-        pilarMesh4.position.set(box.min.x, box.min.y + (box1.max.y - box1.min.y)/2- (box1.max.y - box1.min.y)*0.2, box.max.z);
-        console.log(box1.min.y)
-        
+        pilarMesh4.position.set(box.min.x, box.min.y + (box1.max.y - box1.min.y)/2- (box1.max.y - box1.min.y)*0.2, box.max.z);        
         
         group.add(boardMesh, pilarMesh1, pilarMesh2, pilarMesh3, pilarMesh4)
         

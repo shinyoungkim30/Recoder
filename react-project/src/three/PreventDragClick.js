@@ -16,7 +16,6 @@ export class PreventDragClick {
 	mouseUpFunc(e) {
 		const xGap = Math.abs(e.clientX - this.clickStartX);
 		const yGap = Math.abs(e.clientY - this.clickStartY); 
-		// console.log(xGap, yGap)
 		const timeGap = Date.now() - this.clickStartTime;
 
 		if( xGap > 3 || yGap > 3 || timeGap > 1000) {

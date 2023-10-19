@@ -30,7 +30,6 @@ const WareCardItem2 = ({
   const appInstance = useRef(null);
 
   const selectWh = () => {
-    console.log("창고선택클릭", wh_seq);
     setSelectWhSeq(wh_seq);
     setWareName(wh_name)
     nav("/main");
@@ -68,12 +67,8 @@ const WareCardItem2 = ({
       .get(`http://localhost:8000/warehouse/${wh_seq}`)
       .then((res) => {
         setWarehouseInfo(res.data);
-        // console.log(res.data);
-        // console.log(parseInt(res.data.wh_width));
         setWarehouseWidth(parseInt(res.data.wh_width));
         setWarehouseLength(parseInt(res.data.wh_length));
-        // console.log("warehouseWidth 값", warehouseWidth);
-        // console.log("warehouseLength 값", warehouseLength);
       })
       .catch((error) => {
         console.error(error);

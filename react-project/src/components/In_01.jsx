@@ -17,10 +17,7 @@ function In_01({ inputItem,setInputItem }) {
       const response = await axios.post('http://localhost:8000/in/create', { barCode });
 
       if (response.status === 200) {
-        console.log('입고예정 리스트 가져오기 성공');
-        console.log(response.data);
         setGetList(response.data)
-        // setInputItem('')
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -30,7 +27,6 @@ function In_01({ inputItem,setInputItem }) {
   }
 
   useEffect(() => {
-    console.log("가져온 바코드", inputItem);
     getInStock();
   }, [inputItem])
 

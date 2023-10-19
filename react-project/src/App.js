@@ -44,7 +44,6 @@ const App = () => {
   useEffect(() => {
     axios.get('http://localhost:8000/user')
     .then((res) => {
-      console.log(res);
       if (res.data) {
         setUid(true)
         setUserNick(res.data.user_nick)

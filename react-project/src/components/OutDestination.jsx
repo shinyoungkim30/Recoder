@@ -37,11 +37,9 @@ function OutDestination({selectWhSeq}) {
         userData
       );
       if (response.status === 200) {
-        console.log("출고항목", response.data);
         setDesData(response.data);
       }
     } catch (error) {
-      console.log("출고항목 가져오기 실패", error);
     }
   };
 

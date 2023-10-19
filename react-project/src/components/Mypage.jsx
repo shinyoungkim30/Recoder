@@ -71,7 +71,6 @@ function GridComplexExample({ userNick, parentComName }) {
       });
   }, [registerComData]);
 
-  console.log(parentComName);
   return (
     <div id="mypage-container">
       <div id="mypage-header">

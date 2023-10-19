@@ -17,12 +17,10 @@ function BarcodeReader() {
   });
 
   const insertStock = () => {
-    console.log(data);
 
     // api 추가
     axios.post('http://localhost:8000/stock/barcode', data)
     .then((res) => {
-      console.log(res);
     })
     .catch((err) => {
       console.error(err);
@@ -67,7 +65,6 @@ function BarcodeReader() {
                 ...prev,
                 stock_barcode: result.codeResult.code,
               }));
-              console.log(result.codeResult.code);
             } else {
               alert('바코드를 읽을 수 없습니다.');
             }

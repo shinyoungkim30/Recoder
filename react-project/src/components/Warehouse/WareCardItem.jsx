@@ -64,12 +64,8 @@ const WareCardItem = ({
       .get(`http://localhost:8000/warehouse/${wh_seq}`)
       .then((res) => {
         setWarehouseInfo(res.data);
-        // console.log(res.data);
-        // console.log(parseInt(res.data.wh_width));
         setWarehouseWidth(parseInt(res.data.wh_width));
         setWarehouseLength(parseInt(res.data.wh_length));
-        // console.log("warehouseWidth 값", warehouseWidth);
-        // console.log("warehouseLength 값", warehouseLength);
       })
       .catch((error) => {
         console.error(error);

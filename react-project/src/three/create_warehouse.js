@@ -166,11 +166,9 @@ export default class App {
 			minZ : Math.round(this.groundBound.min.z*10)/10,
 			maxZ : Math.round(this.groundBound.max.z*10)/10
 		}
-		// console.log(this.groundBoundPos);
 	}
 
 	setupMouseEvents(rectangleWidth = 1, rectangleHeight = 1, rackFloor = 1, ) {
-		console.log(`THREE.JS 선반 - 가로: ${rectangleWidth}/ 세로: ${rectangleHeight}/ ${rackFloor}층`)
 		this.rectangleWidth = rectangleWidth
 		this.rectangleHeight = rectangleHeight
 		this.rackFloor = rackFloor
@@ -192,7 +190,6 @@ export default class App {
 
 			// raycaster에 맞은 객체가 있다면, 
 			if (intersects.length > 0) {
-				// console.log(intersects)
 				const intersection = intersects[0];
 				// rectangleMesh가 없으면 -> 객체를 생성
 				if (!this.rectangleMesh) {
@@ -230,13 +227,9 @@ export default class App {
 					(intersection.point.x + this.width / 2) / this.cellSize
 				);
 				// console.warn("pointer", intersection.point.x );
-				// console.log("cellX", cellX)
 				const cellY = Math.floor(
 					(intersection.point.z + this.length / 2) / this.cellSize
 				);
-				// console.log("------------------------")
-				// console.log(`cellX, CellY %c ${cellX}-${cellY}`, "background:blue, color:white")
-				// console.log("========================")
 
 
 
@@ -272,8 +265,6 @@ export default class App {
 
 				
 
-				// console.log(`pointerX, pointer %c ${Math.round(intersection.point.x)}//${Math.round(intersection.point.z)}`, "background:blue, color:white")
-				// console.log(`pointer y : ${Math.round(intersection.point.y)}`)
 
 				// this.rectangleMesh.position.x = intersection.point.x;
 				// this.rectangleMesh.position.z = intersection.point.z;
@@ -318,7 +309,6 @@ export default class App {
 					(intersection.point.z + this.length / 2) / this.cellSize
 				);
 
-				// console.log("Clicked at cell:", cellX, cellY+1);
 			}
 			
 		});
@@ -344,11 +334,9 @@ export default class App {
 				const intersection = intersects[0];
 				if(intersection.object.name == "ground" || intersection.object.name == "선") return;
 
-				//intersects.forEach(item => console.log("mesh이름", item.object.name))
 				if(intersection.object.parent && intersection.object.parent.parent) {
 					
 					this.raycaster.selectedMesh = intersection.object.parent.parent
-					// console.log(this.raycaster.selectedMesh.name); // ex) 선반인데요
 					// scene에서 제거
 					if(this.raycaster.selectedMesh) {
 						this._scene.remove(this.raycaster.selectedMesh)
@@ -363,12 +351,9 @@ export default class App {
 						// 	y: 0.2,
 						// 	z: this.rectangleMesh.position.z
 						// });
-						// console.log('헤헤', this.meshes);
-						// console.log(this.rectangleMesh.position.x,)
 
 					// Mesh를 자원을 해제
 					if(this.raycaster.selectedMesh instanceof THREE.Group) {
-						// console.log("selectedMesh dispose \n\n", this.raycaster.selectedMesh)
 						// this.raycaster.selectedMesh가 Group일 때
 						this.raycaster.selectedMesh.traverse(child => {
 							if(child instanceof THREE.Mesh) {
@@ -386,7 +371,6 @@ export default class App {
 	mouseUpHandler(e) {
 		if (e.button == 0) { // 왼쪽 클릭 뗌
 			let 클릭됨 = this.preventDragClick.mouseUpFunc(e);
-			// console.log("마우스 드래그 했어? :", 클릭됨 ? "응" : "아니")
 			if (!클릭됨) {
 				this.raycaster.setFromCamera(this.mouse, this._camera);
 				const intersects = this.raycaster.intersectObject(this._warehouse);
@@ -408,10 +392,8 @@ export default class App {
 	// 모든 메쉬 삭제
 	deleteAllMesh() {
 		if(this._scene != null) {
-			console.log('this._scene을 null로 변경합니다.')
 			this._scene = null;
 		} else {
-			console.log("this._scene은 null 입니다.")
 		}
 	}
 
@@ -423,13 +405,11 @@ export default class App {
 				y: 0.2,
 				z: this.rectangleMesh.position.z
 			}
-			console.log("현재 선반의 층수는?", this.rackFloor)
 			let rackWidth = localStorage.getItem("rack_width") == null || localStorage.getItem == undefined ?  1 : localStorage.getItem("rack_width");
 			let rackLength = localStorage.getItem("rack_length") == null || localStorage.getItem == undefined ?  1 : localStorage.getItem("rack_length");
 			let rackFloor = localStorage.getItem("rack_floor") == null || localStorage.getItem == undefined ?  1 : localStorage.getItem("rack_floor");
 
 			// let rackGroup = createRack(this.rectangleWidth, this.rectangleHeight, this.rackFloor, rackPos)
-			console.log(`랙탱글 크기 ${rackWidth}, ${rackLength}`)
 			let rackGroup = createRack(rackWidth, rackLength, rackFloor, rackPos)
 			rackGroup.name = localStorage.getItem("rack_name") == undefined || localStorage.getItem("rack_name") == null ? "" : localStorage.getItem("rack_name");
 			rackGroup.userData.rackWidth = rackWidth;
@@ -444,23 +424,17 @@ export default class App {
 				minZ : Math.round(mesh.min.z*10)/10,
 				maxZ : Math.round(mesh.max.z*10)/10
 			}
-			// console.log("바닥", this.groundBoundPos);
-			// console.log("선반", aa);
 
 			if(aa.minX < this.groundBoundPos.minX) {
-				console.log(`선반의 x 값이 더 작아! 선반 : ${aa.minX}, 바닥 : ${this.groundBoundPos.minX}`)
 				return;
 			}
 			if(aa.maxX > this.groundBoundPos.maxX) {
-				console.log("선반의 x 값이 더 커!")
 				return;
 			}
 			if(aa.minZ < this.groundBoundPos.minZ) {
-				console.log("선반의 z 값이 더 작아!")
 				return;
 			}
 			if( aa.maxZ > this.groundBoundPos.maxZ) {
-				console.log("선반의 z 값이 더 커!!")
 				return;
 			}
 			
@@ -470,12 +444,8 @@ export default class App {
 			// });
 			this.meshes.push(rackGroup);
 			this._scene.add(rackGroup);
-			// console.log(rackGroup.position)
-			// console.log("addShelf", this.meshes)
 		} else {
-			console.log("this.rectangleMesh 없음")
 		}
-		// console.log(`rackGroup의 위치 : ${JSON.stringify(rackGroup.position)}`)
 	}
 
 	addLoading() {

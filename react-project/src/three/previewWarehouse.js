@@ -162,8 +162,6 @@ export default class App {
         const cellX = Math.floor(
           (intersection.point.x + this.width / 2) / this.cellSize
         );
-        // console.log("pointer", intersection.point.x);
-        // console.log("cellX", cellX)
         const cellY = Math.floor(
           (intersection.point.z + this.length / 2) / this.cellSize
         );
@@ -235,7 +233,6 @@ export default class App {
           (intersection.point.z + this.length / 2) / this.cellSize
         );
 
-        console.log("Clicked at cell:", cellX, cellY+1);
       }
     });
   }

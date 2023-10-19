@@ -31,59 +31,24 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 	const [rackLength, setRackLength] = useState(1);
 	const [rackFloor, setRackFloor] = useState(1);
 
-	// 원래 코드
-	// useEffect(() => {
-	//   axios.get('http://localhost:8000/user')
-	//     .then((res) => {
-	//       console.log("createWarehouse에서 받은 정보", res.data);
-	//       const warehouseData = res.data.Company.Warehouses;
-	//       const lastWarehouse = warehouseData[warehouseData.length - 1];
-	//       console.log("가장 최근 창고 정보 :", lastWarehouse);
-
-	//       // const warehouseWidth = parseInt(lastWarehouse.wh_width);
-	//       // const warehouseLength = parseInt(lastWarehouse.wh_length);
-	//       // console.log("창고 가로 길이:", warehouseWidth);
-	//       // console.log("창고 세로 길이:", warehouseLength);
-	//       setWarehouseWidth(parseInt(lastWarehouse.wh_width));
-	//       setWarehouseLength(parseInt(lastWarehouse.wh_length));
-	//     })
-	//     .catch((err) => {
-	//       console.error(err);
-	//     })
-	// }, []);
-	// 원래 코드
-
 	const appInstance = useRef(null);
 
 	const [rackX, setRackX] = useState(0);
 	const [rackZ, setRackZ] = useState(0);
 	const [rackRotateYN, setRackRotateYN] = useState("N");
 
-
-	/** useEffect -> [] */
 	useEffect(() => {
-		console.log("여기", newWareData);
-		console.log(newWareData.wh_seq);
 		setWh_seq(newWareData.wh_seq);
 
 		const warehouseData = newWareData;
-		// const lastWarehouse = warehouseData[warehouseData.length - 1];
-		// console.log("가장 최근 창고 정보 :", lastWarehouse);
-
-		// 창고의 크기 설정 (가로, 세로)
-		// setWarehouseWidth(parseInt(newWareData.wh_width));
-		// setWarehouseLength(parseInt(newWareData.wh_length));
 
 		setWarehouseWidth(parseInt(localStorage.getItem("ware_width")));
 		setWarehouseLength(parseInt(localStorage.getItem("ware_length")));
-		// setWarehouseWidth(10); // 임시 데이터
-		// setWarehouseLength(10);
 	}, []);
 
 	/** useEffect -> [warehouseWidth, warehouseLength] */
 	useEffect(() => {
 		if (warehouseWidth !== null && warehouseLength !== null) {
-			console.log("지금!");
 			appInstance.current = new App(
 				warehouseWidth,
 				warehouseLength,
@@ -119,7 +84,6 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 				rackLength,
 				parseInt(localStorage.getItem('rackFloor')) // 로컬 스토리지에서 rackFloor값 불러오기!
 			);
-			console.log("setupMouseEvent 실행!")
 		}
 
 		// let url = "http://localhost:8000/rack";
@@ -152,16 +116,6 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 	/** 선반 정보를 DB에 저장 */
 	const completeRack = async (e) => {
 		let result = []
-		// const rack_info = {
-		// 	rackName: rackName,
-		// 	rackWidth: rackWidth,
-		// 	rackLength: rackLength,
-		// 	rackFloor: rackFloor,
-		// 	rackX: rackX,
-		// 	rackZ: rackZ,
-		// 	rackRotateYN: rackRotateYN,
-		// 	wh_seq:wh_seq
-		// };
 
 		const warehouse_info = {
 			name: localStorage.getItem("ware_name")==null || localStorage.getItem("ware_name")==undefined ? "" : localStorage.getItem("ware_name"), 
@@ -172,7 +126,6 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 		let url = "http://localhost:8000/ware";
 		var response = await axios.post(url, warehouse_info)
 		seq = (await response).data.wh_seq;
-		console.log("seq생성? ", seq)
 
 		// .then((res) => {
 		// 	// localStorage.setItem('warehouse', Json.stringify(res.data));
@@ -195,36 +148,17 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 				wh_seq: seq
 			})
 		})
-		console.log("몇층인가", 메쉬배열)
 
-		console.log("completeRack 함수 안", result)
 		url = "http://localhost:8000/rack";
 		axios
 		.post(url, result)
 		.then((res) => {
-			console.log("db에 선반 저장", res);
-			
-			// if (appInstance.current) {
-			// 	appInstance.current.setupMouseEvents(
-			// 		res.data.rack_width,
-			// 		res.data.rack_length,
-			// 		parseInt(localStorage.getItem('rackFloor')) // 로컬 스토리지에서 rackFloor값 불러오기!
-			// 	);
-			// }
 			nav('/ware/manage')
 		})
 		.catch((error) => {
 			console.error(error);
 		});
 
-		// nav = http://localhost:3000/ware/manage
-	}
-
-	function get배열() {
-		console.log("배열 확인", 메쉬배열)
-		// 메쉬배열.forEach(item => {
-		// 	console.log(`x: ${item.position.x}, z: ${item.position.z}`)
-		// })
 	}
 
 	function sizeRack() {
@@ -237,11 +171,7 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 	// 모달 창 끄는 부분
 	const modalClose = (e) => {
 		setModalOpen(false);
-		console.log("wh_seq값좀 봅시다", wh_seq);
 		e.preventDefault();
-		console.log(
-			`선반 이름: ${rackName}/ 가로: ${rackWidth}/ 세로: ${rackLength}/ ${rackFloor}층`
-		);
 
 		const rack_info = {
 			rackName: rackName,
@@ -260,7 +190,6 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 		axios
 			.post(url, rack_info)
 			.then((res) => {
-				console.log(res);
 
 				if (appInstance.current) {
 					appInstance.current.setupMouseEvents(
@@ -271,8 +200,7 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 				}
 			})
 			.catch((error) => {
-				console.log(`axios에러`);
-				// console.error(error);
+				console.error(error);
 			});
 	};
 
@@ -337,7 +265,7 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 					<div className={"modal-content"}>
 						<div className="rack_create_all">
 							<div className="rack_create_title">
-								<h1 onClick={() => { console.log("선반생ㄱ성") }}>선반생성</h1>
+								<h1 onClick={() => {  }}>선반생성</h1>
 								<button
 									className={"modal-close-btn"}
 								>

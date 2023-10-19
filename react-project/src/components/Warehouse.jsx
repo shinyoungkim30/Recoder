@@ -7,16 +7,8 @@ import "../css/wareDetail.css";
 
 const Warehouse = () => {
 	let { wh_seq } = useParams();
-	//console.log("wh_seq 값", wh_seq);
-
-	// const [warehouseInfo, setWarehouseInfo] = useState(null);
-
-
 
 	// 변수
-  // const [selectedName, setSelectedName] = useState('')
-  // const [selectedPrice, setSelectedPrice] = useState('')
-  // const [selectedIndate, setSelectedIndate] = useState('')
 	const [warehouseWidth, setWarehouseWidth] = useState(null);
 	const [warehouseLength, setWarehouseLength] = useState(null);
 	const [rackWidth, setRackWidth] = useState(null);
@@ -47,7 +39,6 @@ const Warehouse = () => {
 			axios.get(`http://localhost:8000/stock/show/${wh_seq}`)
 		])
 			.then(([warehouseRes, rackRes, stockRes]) => {
-				console.log("랙 데이터 배열", rackRes.data);
 				const racks = rackRes.data.map((rack) => ({
 					rackFloor: parseInt(rack.rack_floor),
 					rackWidth: parseInt(rack.rack_width),
@@ -56,34 +47,6 @@ const Warehouse = () => {
 					rackZ: parseInt(rack.rack_z),
           seq: rack.rack_seq,
 				}));
-
-				console.log("warehouse", warehouseRes.data.wh_width)
-				console.log("racks 찍어보자", racks);
-
-				console.log("상품 데이터 배열", stockRes);
-
-        console.log("stockRes", stockRes.data[0]);
-        console.log("뭘가져오는지 보자", stockRes.data[0].Racks[0].Loadings);
-        console.log("뭘가져오는지 보자", stockRes.data[0].Racks[0].Loadings[0].Stock);
-
-				console.log("true/false", Array.isArray(stockRes.data[0].Racks[0].Loadings));
-
-
-        // const stocks = stockRes.data[0].Racks[27].Loadings.map(stock => {
-        //   // const [pos1, pos2] = stock.loading_position.split(',').map(Number);
-        //   const [pos1, pos2] = stock.loading_position ? stock.loading_position.split(',').map(Number) : [0, 0];
-        //   const stockName = stock.Stock.stock_name
-        //   const stockPrice = stock.Stock.stock_price
-        //   const stockIndate = stock.created_at
-        //   return {
-        //     loadingFloor: stock.loading_floor,
-        //     loadingPosition1: pos1,
-        //     loadingPosition2: pos2,
-        //     stockName: stockName,
-        //     stockPrice: stockPrice,
-        //     stockIndate: stockIndate
-        //   }
-        // })
 
         // 1006수정
         const stocks = stockRes.data[0].Racks.flatMap(rack => {
@@ -103,7 +66,6 @@ const Warehouse = () => {
           });
         });
 
-				// console.log("stock 가져오니라", stocks);
 
 				setWarehouseData({
 					warehouseWidth: parseInt(warehouseRes.data.wh_width),
@@ -112,22 +74,16 @@ const Warehouse = () => {
 					stocks
 				});
 
-				console.log("stock 가져오니라", stocks);
 
 			})
 			.catch((error) => {
-				console.log(error);
+				console.error(error);
 			});
 	}, [wh_seq]);
 
 	// useEffect -> warehouseData
 	useEffect(() => {
-		console.log("지금!");
 		if (Object.keys(warehouseData).length >= 1) {
-			console.log("지금!222222222");
-			console.log(warehouseData);
-			console.log(Object.keys(warehouseData));
-			console.log(`warehouseData ${JSON.stringify(warehouseData)}`)
 
 			appInstance.current = new App(
 				warehouseData.warehouseWidth,
@@ -137,7 +93,7 @@ const Warehouse = () => {
 			);
 		}
 		else {
-			console.log("error");
+			console.error("error");
 		}
 	}, [warehouseData]);
 
@@ -157,10 +113,6 @@ const Warehouse = () => {
 			);
 			return newCanAddItem; // return으로 canAddItem설정
 		}); // state일때의 state 콜백
-
-		// setCanAddItem(!canAddItem);
-		// setCanAddRack(!canAddItem);
-		console.log("짐 추가 클릭");
 	}
 
 	function moveLoading() {

@@ -13,6 +13,5 @@ export default function createLoading(pos, size = 0.7) {
 		pos.y + mesh.scale.y/2,
 		pos.z
 	)
-	console.log(mesh.position);
 	return mesh
 }

@@ -28,7 +28,6 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
   const handleOk = () => {
     setIsModalOpen(false);
     // 엑시오스로 출고 데이터 보내기
-    console.log("출고데이터", outPlus);
     sendData();
   };
 
@@ -40,13 +39,11 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
       );
 
       if (response.status === 200) {
-        console.log("출고데이터 전송 성공");
-        console.log(response.data);
         window.location.href = "http://localhost:3000/out/create";
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        console.log(error);
+        console.error(error);
       }
     }
   };
@@ -68,8 +65,6 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
       );
 
       if (response.status === 200) {
-        console.log("출고예정 리스트 가져오기 성공");
-        console.log(response.data);
         setOutStockList(response.data.result1);
         setDesList(response.data.result2);
       }
@@ -81,7 +76,6 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
   };
 
   const handleOutLoading = (record) => {
-    console.log("출고버튼클릭 : ", record);
     setIsModalOpen(true);
     setOutPluse({ ...outPlus, loading_seq: record.loading_seq });
   };
@@ -167,8 +161,6 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
 
   const [showInput, setShowInput] = useState(false);
   const handleInputPluse = (e) => {
-    // console.log("배송지 선택 클릭");
-    // console.log(e.target.value);
     if (e.target.value === "직접입력") {
       setShowInput(true);
     } else {
@@ -185,31 +177,23 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
   });
   // 배송지 선택 함수
   const desHandler = (e) => {
-    console.log();
     if (e.target.name === "out_date") {
-      console.log(e.target.value);
       setOutPluse({ ...outPlus, created_at: e.target.value });
     } else if (e.target.name === "out_cnt") {
-      console.log(e.target.value);
       setOutPluse({ ...outPlus, loading_cnt: e.target.value });
     } else if (e.target.getAttribute("name") === "loading_seq") {
-      console.log(e.target.innerText);
       setOutPluse({ ...outPlus, loading_seq: e.target.innerText });
     } else if (e.target.name === "out_des_choice") {
-      console.log("고르기", e.target.value);
       setOutPluse({ ...outPlus, stock_shipping_des: e.target.value });
     } else if (e.target.name === "out_des_self") {
-      console.log("직접입력", e.target.value);
       setOutPluse({ ...outPlus, stock_shipping_des: e.target.value });
     }
   };
 
   const desHandler2 = (e) => {
-    console.log("고르기", e.target.value);
     setOutPluse({ ...outPlus, stock_shipping_des: e.target.value });
   };
   useEffect(() => {
-    console.log('선택하신 창고 번호',selectWhSeq);
     getOutStock();
   }, [pageNum, intValue]);
 

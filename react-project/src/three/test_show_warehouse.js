@@ -50,7 +50,6 @@ export default class App {
     // this.setupMouseEvents();
     // _로 시작하는 이유 app 클래스 내부에서만 호출
 
-    // console.log("rackX",this.rackX);
 
     this.preventDragClick = new PreventDragClick(this._divContainer);
 
@@ -203,7 +202,6 @@ export default class App {
     this._scene.add(this.ground);
 
     // this._warehouse = wareHouse;
-    console.log(`바닥의 위치ㄴ! ${JSON.stringify(wareHouseMesh.position)}`);
 
     this.rectangleMesh = null;
     this.groundBoundPos = {
@@ -214,14 +212,11 @@ export default class App {
     };
 
     // this.addShelf();
-    // console.log(this.groundBoundPos);
   }
 
   /** 선반 추가 */
   addShelf(rack) {
     // 선반 만들기
-    // console.log(this.rackX);
-    // console.log(this.rackZ);
 
     let rackPos = {
       // x: this.rackX.position.x,
@@ -230,7 +225,6 @@ export default class App {
       // z: this.rackZ.position.z
       z: rack.rackZ,
     };
-    console.log("현재 선반의 층수는?", rack.rackFloor);
 
     // Rack 생성부분 - createRack 호출
 
@@ -250,39 +244,29 @@ export default class App {
       minZ: Math.round(mesh.min.z * 10) / 10,
       maxZ: Math.round(mesh.max.z * 10) / 10,
     };
-    // console.log("바닥", this.groundBoundPos);
-    // console.log("선반", aa);
 
     if (aa.minX < this.groundBoundPos.minX) {
-      console.log(
-        `선반의 x 값이 더 작아! 선반 : ${aa.minX}, 바닥 : ${this.groundBoundPos.minX}`
-      );
+     
       return;
     }
     if (aa.maxX > this.groundBoundPos.maxX) {
-      console.log("선반의 x 값이 더 커!");
       return;
     }
     if (aa.minZ < this.groundBoundPos.minZ) {
-      console.log("선반의 z 값이 더 작아!");
       return;
     }
     if (aa.maxZ > this.groundBoundPos.maxZ) {
-      console.log("선반의 z 값이 더 커!!");
       return;
     }
     // this.meshes.push(rackGroup);
     rackMesh.name = "선반인데요";
     this.rackGroup.add(rackMesh);
     this._scene.add(this.rackGroup);
-    // console.log("addShelf", this.meshes)
 
-    // console.log(`rackGroup의 위치 : ${JSON.stringify(rackGroup.position)}`)
   }
 
   /** 짐추가 2, 필요시 삭제 */
   addLoading(posX, posY, posZ) {
-    console.log("addLoading 호출");
     let loaingClass = new createLoadingClass();
     let mesh = loaingClass.createLoading();
     mesh.position.set(posX, posY, posZ);
@@ -311,34 +295,25 @@ export default class App {
       minZ: Math.round(mesh.min.z * 10) / 10,
       maxZ: Math.round(mesh.max.z * 10) / 10,
     };
-    // console.log("바닥", this.groundBoundPos);
-    // console.log("선반", aa);
 
     if (aa.minX < this.groundBoundPos.minX) {
-      console.log(
-        `선반의 x 값이 더 작아! 선반 : ${aa.minX}, 바닥 : ${this.groundBoundPos.minX}`
-      );
+      
       return;
     }
     if (aa.maxX > this.groundBoundPos.maxX) {
-      console.log("선반의 x 값이 더 커!");
       return;
     }
     if (aa.minZ < this.groundBoundPos.minZ) {
-      console.log("선반의 z 값이 더 작아!");
       return;
     }
     if (aa.maxZ > this.groundBoundPos.maxZ) {
-      console.log("선반의 z 값이 더 커!!");
       return;
     }
     
     // this.meshes.push(rackGroup);
     // rackGroup.name = "선반인데요"
     this.loading.add(itemGroup);
-    // console.log("addShelf", this.meshes)
 
-    // console.log(`rackGroup의 위치 : ${JSON.stringify(rackGroup.position)}`)
   }
 
   mouseupHandler(e) {
@@ -346,7 +321,6 @@ export default class App {
     if (clicked) return;
 
 
-    console.log(`x: ${this.newPosX}, y: ${this.newPosY}, z: ${this.newPosZ}  `);
 
     if (e.button == 0 && e.shiftKey) {
       this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -354,18 +328,13 @@ export default class App {
       this.raycaster.setFromCamera(this.mouse, this._camera);
       const intersects = this.raycaster.intersectObject(this.loading);
 
-      // console.log(`intersecs's length : ${intersects.length}`)
       if (intersects.length > 0) {
         const intersection = intersects[0];
-        // console.log(intersects.map(item=>item.object.name));
-        // console.log(intersects.map(item=>item.point))
         let { x, z } = intersection.point;
         this.raycaster.selectedMesh = intersection.object;
         this.raycaster.selectedMesh.position.y += 1;
 
-        console.log(`a: ${x}\nb: ${z}`);
       } else if (intersects.length == 0) {
-        // console.log(intersects)
       }
     }
 
@@ -376,26 +345,19 @@ export default class App {
       this.raycaster.setFromCamera(this.mouse, this._camera);
       const intersects = this.raycaster.intersectObject(this.loading);
 
-      // console.log(`intersecs's length : ${intersects.length}`)
       if (intersects.length > 0) {
         const intersection = intersects[0];
-        // console.log(intersects.map(item=>item.object.name));
-        // console.log(intersects.map(item=>item.point))
         let { x, z } = intersection.point;
         this.raycaster.selectedMesh = intersection.object;
         this.raycaster.selectedMesh.position.y -= 1;
 
-        console.log(`a: ${x}\nb: ${z}`);
       } else if (intersects.length == 0) {
-        // console.log(intersects)
       }
     }
 
     // 마우스 좌클릭만
     if (e.button == 0 && !e.shiftKey) {
-      console.log(`짐이동여부 : ${this.짐이동여부}`);
       if (this.짐이동여부 && !this.isMoving) {
-        console.log(`짐이동여부안 : ${this.짐이동여부}`);
         this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
         this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
         this.raycaster.setFromCamera(this.mouse, this._camera);
@@ -449,7 +411,6 @@ export default class App {
       this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
       this.raycaster.setFromCamera(this.mouse, this._camera);
       const intersects = this.raycaster.intersectObjects( this.rackGroup.children );
-      console.log(this.rackGroup)
 
       // 선반 클릭 이벤트
       if (intersects.length > 0) {
@@ -470,37 +431,15 @@ export default class App {
         let newPosZ =
           cellY * this.cellSize - this.length / 2 + this.cellSize / 2;
 
-        // console.log(`this.짐추가가능여부 : ${this.짐추가가능여부}`);
-        console.log(`좌표 x:${newPosX}, y:${newPosY}, z:${newPosZ}`)
 
         if (this.짐추가가능여부) {
           this.addLoading(newPosX, newPosY, newPosZ);
         } else {
           if(intersection.object.parent.parent) {
-            console.log("seq출력", intersection.object.parent.parent.userData.rackSeq)
 
           }
         }
       }
-
-      // 짐클릭 이벤트
-      // this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      // this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-      // this.raycaster.setFromCamera(this.mouse, this._camera);
-      // const intersects = this.raycaster.intersectObject(
-      //   this.loading
-      // );
-      // console.log(this.loading)
-      // console.log(`intersecs length  : ${intersects.length}`)
-      // if (intersects.length > 0) {
-      //   const intersection = intersects[0];
-      //   // 이름만 가져와봄
-      //   console.log(`메쉬 이름!!! :${intersection.object.name}`);
-      //   localStorage.setItem("selectedMesh_name", intersection.object.name)
-      //   localStorage.setItem("selectedMesh_price", intersection.object.userData.stockPrice);
-      //   localStorage.setItem("selectedMesh_indate", intersection.object.userData.stockIndate);
-
-      // }
 
     }
 
@@ -511,7 +450,6 @@ export default class App {
       this.raycaster.setFromCamera(this.mouse, this._camera);
       const intersects = this.raycaster.intersectObject(this.loading.children);
 
-      console.log("우클릭");
       if (intersects.length > 0) {
         this.raycaster.selectedMesh = intersects[0].object;
 

@@ -11,7 +11,6 @@ router.get('/:comNum', async (req, res, next) => {
         com_business_num: removeHyphens
       }
     })
-    console.log(result);
     res.json(result)
   } catch (error) {
     console.error(error);

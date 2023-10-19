@@ -22,13 +22,11 @@ const stockNameData = async () => {
         wh_seq:wSeq
     }
 
-    console.log('조회할데이터',stock_name);
     try {
       const response = await axios.post('http://localhost:8000/out/des/count', stock_name)
   
       if (response.status === 200) {
   
-        console.log("특정제품 데이터", response.data)
         setCharData(response.data)
   
       };

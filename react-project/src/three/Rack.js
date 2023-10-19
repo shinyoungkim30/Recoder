@@ -21,14 +21,11 @@ export default class Rack {
 		let box = new THREE.Box3().setFromObject(rack);
 
 		this.minX = Math.round(box.min.x*10)/10
-		// console.log(`this.min.X의 값은?(클래스 내부) - ${this.minX}`)
 		this.maxX = Math.round(box.max.x*10)/10
-		// console.log(`this.max.X의 값은?(클래스 내부) - ${this.maxX}`)
 		this.minY = Math.round(box.min.y*10)/10
 		this.maxY = Math.round(box.max.y*10)/10
 		this.minZ = Math.round(box.min.z*10)/10
 		this.maxZ = Math.round(box.max.z*10)/10
-		console.log("rack 생성 완료")
 		return rack
 	}
 	
@@ -98,7 +95,6 @@ export default class Rack {
 	}
 
 	getMinX() {
-		console.log(`this.max.X의 값은?(클래스 getMin) - ${this.maxX}`)
 		// return this.minX;
 	}
 }

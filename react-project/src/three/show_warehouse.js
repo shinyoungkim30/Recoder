@@ -38,7 +38,6 @@ export default class App {
         // this.setupMouseEvents();
         // _로 시작하는 이유 app 클래스 내부에서만 호출
 
-        // console.log("rackX",this.rackX);
 
         this.preventDragClick = new PreventDragClick(this._divContainer);
 
@@ -161,13 +160,10 @@ export default class App {
         }
 
         // this.addShelf();
-        // console.log(this.groundBoundPos);
     }
 
     addShelf(rack) {
         // 선반 만들기
-        // console.log(this.rackX);
-        // console.log(this.rackZ);
 
         let rackPos = {
             // x: this.rackX.position.x,
@@ -176,7 +172,6 @@ export default class App {
             // z: this.rackZ.position.z
             z: rack.rackZ
         }
-        console.log("현재 선반의 층수는?", rack.rackFloor)
 
         // Rack 생성부분 - createRack 호출
         let rackGroup = createRack(rack.rackWidth, rack.rackLength, rack.rackFloor, rackPos)
@@ -188,31 +183,23 @@ export default class App {
             minZ: Math.round(mesh.min.z * 10) / 10,
             maxZ: Math.round(mesh.max.z * 10) / 10
         }
-        // console.log("바닥", this.groundBoundPos);
-        // console.log("선반", aa);
 
         if (aa.minX < this.groundBoundPos.minX) {
-            console.log(`선반의 x 값이 더 작아! 선반 : ${aa.minX}, 바닥 : ${this.groundBoundPos.minX}`)
             return;
         }
         if (aa.maxX > this.groundBoundPos.maxX) {
-            console.log("선반의 x 값이 더 커!")
             return;
         }
         if (aa.minZ < this.groundBoundPos.minZ) {
-            console.log("선반의 z 값이 더 작아!")
             return;
         }
         if (aa.maxZ > this.groundBoundPos.maxZ) {
-            console.log("선반의 z 값이 더 커!!")
             return;
         }
         // this.meshes.push(rackGroup);
         rackGroup.name = "선반인데요"
         this._scene.add(rackGroup);
-        // console.log("addShelf", this.meshes)
 
-        // console.log(`rackGroup의 위치 : ${JSON.stringify(rackGroup.position)}`)
     }
 
     addItem(item) {
@@ -235,31 +222,23 @@ export default class App {
             minZ: Math.round(mesh.min.z * 10) / 10,
             maxZ: Math.round(mesh.max.z * 10) / 10
         }
-        // console.log("바닥", this.groundBoundPos);
-        // console.log("선반", aa);
 
         if (aa.minX < this.groundBoundPos.minX) {
-            console.log(`선반의 x 값이 더 작아! 선반 : ${aa.minX}, 바닥 : ${this.groundBoundPos.minX}`)
             return;
         }
         if (aa.maxX > this.groundBoundPos.maxX) {
-            console.log("선반의 x 값이 더 커!")
             return;
         }
         if (aa.minZ < this.groundBoundPos.minZ) {
-            console.log("선반의 z 값이 더 작아!")
             return;
         }
         if (aa.maxZ > this.groundBoundPos.maxZ) {
-            console.log("선반의 z 값이 더 커!!")
             return;
         }
         // this.meshes.push(rackGroup);
         // rackGroup.name = "선반인데요"
         this._scene.add(itemGroup);
-        // console.log("addShelf", this.meshes)
 
-        // console.log(`rackGroup의 위치 : ${JSON.stringify(rackGroup.position)}`)
     }
 
     // 창의 크기가 변경될때 발생하는 이벤트

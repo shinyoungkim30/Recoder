@@ -50,27 +50,23 @@ function In_02({ selectWhSeq, setSelectWhSeq }) {
     axios
       .post("http://localhost:8000/in/get/loading", { com_seq })
       .then((response) => {
-        console.log("입고등록할 리스트", response.data);
         setLoadingList(response.data);
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
-          console.log(error);
+          console.error(error);
         }
         // 오류 처리
       });
   };
 
   const delHandler = (record) => {
-    console.log("취소클릭", record);
     const stock_seq = { stock_seq: record.stock_seq };
 
     axios
       .post("http://localhost:8000/in/del/loaing", stock_seq)
       .then((res) => {
-        console.log(res.data[0]);
         if (res.data[0] > 0) {
-          console.log("새로고침");
           window.location.href = "http://localhost:3000/in/loading";
         }
       })
@@ -89,22 +85,11 @@ function In_02({ selectWhSeq, setSelectWhSeq }) {
   });
   // 💥 입고등록 !!!
   const Loading = (record) => {
-    console.log("취소클릭", record);
-    // const loadingData = {
-    //   rack_seq : rack_seq,
-    //   loading_seq : loading_seq,
-    //   loading_floor :loading_floor,
-    //   loading_position : loading_position,
-    //   loading_manager : id,
-    //   com_seq : com_seq
-    // }
 
     axios
       .post("http://localhost:8000/in/loaing", loadingData)
       .then((res) => {
-        console.log(res.data[0]);
         if (res.data[0] > 0) {
-          console.log("새로고침");
           window.location.href = "http://localhost:3000/in/loading";
         }
       })
@@ -116,7 +101,6 @@ function In_02({ selectWhSeq, setSelectWhSeq }) {
   const [handleData, setHandleData] = useState([]);
 
   const handleLoading = (record) => {
-    console.log("handlePosition", record);
     setHandleData(record);
     let stock_seq = record.stock_seq;
     // 모달 상태관리

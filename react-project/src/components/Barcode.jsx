@@ -81,19 +81,17 @@ function Barcode({ inputItem, setInputItem }) {
 
   // "등록" 버튼 클릭 시 inputItem을 콘솔에 출력
   const sendBarcode = () => {
-    console.log('모든 input 값:', inputItem);
     const bData = {
       barcode: barcodeData,
       com_seq: com_seq
     };
     axios.post('http://localhost:8000/in/barcode', bData)
       .then(response => {
-        console.log('바코드찍힌 리스트 가져오기 성공', response.data);
         nav('/in/create');
       })
       .catch(error => {
         if (error.response && error.response.status === 401) {
-          console.log(error);
+          console.error(error);
         }
         // 오류 처리
       });

@@ -10,7 +10,6 @@ const Logout = () => {
     axios
       .post("http://localhost:8000/user/logout")
       .then((res) => {
-        console.log(res);
         if (res.data === "ok") {
           window.location.href = "http://localhost:3000";
         } 

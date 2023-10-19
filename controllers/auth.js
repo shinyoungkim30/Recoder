@@ -3,7 +3,6 @@ const passport = require('passport')
 const { User, Company } = require('../models')
 
 exports.join = async (req, res, next) => {
-  console.log('요청');
   let { user_id, user_pw, user_nick, user_cname } = req.body
   try {
     const exUser = await User.findOne({

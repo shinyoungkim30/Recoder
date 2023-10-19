@@ -25,7 +25,6 @@ const In = ({inputItem}) => {
 	}
 	
 	useEffect(()=>{
-		console.log(new Date())
 		
 		// checkbox요소 찾기
 		// 이벤트 위임을 사용하여 모든 체크박스에 대한 이벤트 처리
@@ -48,7 +47,6 @@ const In = ({inputItem}) => {
 
 	// 체크 박스 클릭 이벤트
 	function checkboxClicked(e) {
-		// console.log(e.target.checked, ++cnt);
 		let checkedCnt = 0;
 		
 		if(document.querySelector(".table-none tbody input[type=checkbox]")) {
@@ -82,10 +80,6 @@ const In = ({inputItem}) => {
 
 	// 입고 함수
 	function doIn() {
-		// alert(`${selectedCnt}개 개수의 제품을 입고합니다.`)
-		// console.log(`${selectedCnt}개 개수의 제품을 입고합니다.`)
-		// 모달 라이브러리 띄우기
-		// https://sweetalert.js.org/guides/
 		swal(`${selectedCnt}개의 제품을 입고합니다.`);
 	}
 
@@ -179,16 +173,12 @@ const In = ({inputItem}) => {
 			let _poses = newItem.querySelectorAll(":nth-child(5) input[type=number]")
 			let _pos = [];
 			_poses.forEach( (pos, index) => {
-				// console.log(pos.value)
 				_pos[index] = pos.value
 			})
 			let _price = newItem.querySelector(":nth-child(6) input[type=number]").value
 			let _quantity = newItem.querySelector(":nth-child(7) input[type=number]").value
 			let _date = newItem.querySelector(":nth-child(8) input[type=date]").value
 
-			// console.log(_pName, _pType, null, _pos, `${_price}원`, `${_quantity}개`, _date);
-			// console.log(_date);
-			console.log("_pos는 ", _pos);
 			let _arr = [...testDatas]
 			_arr.push({
 				stockName: _pName,
@@ -205,8 +195,6 @@ const In = ({inputItem}) => {
 	}
 
 	useEffect(()=>{
-		console.log("바코드" , inputItem);
-		// console.log("testDatas ==> ", testDatas)
 	}, [inputItem])
 
 
@@ -295,8 +283,7 @@ const In = ({inputItem}) => {
 										<button type='button' onClick={()=>{
 												let _temp = [...testDatas];
 												_temp.splice(index, 1);
-												setTestDatas(_temp);
-												console.log(_temp)}
+												setTestDatas(_temp);}
 											}> 삭제 </button>
 									</td>
 								</tr>

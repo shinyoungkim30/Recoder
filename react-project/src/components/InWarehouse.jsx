@@ -77,7 +77,6 @@ const Warehouse = () => {
       axios.get(`http://localhost:8000/stock/show/${wh_seq}`),
     ])
       .then(([warehouseRes, rackRes, stockRes]) => {
-        console.log("랙 데이터 배열", rackRes.data);
         const racks = rackRes.data.map((rack) => ({
           rackFloor: parseInt(rack.rack_floor),
           rackWidth: parseInt(rack.rack_width),
@@ -86,22 +85,6 @@ const Warehouse = () => {
           rackZ: parseInt(rack.rack_z),
           seq: rack.rack_seq,
         }));
-
-        console.log("racks 찍어보자", racks);
-
-        console.log("상품 데이터 배열", stockRes);
-
-        console.log("스톡 응답", stockRes);
-
-        // const stocks = stockRes.data[0].Racks[27].Loadings.map((stock) => {
-        //   const [pos1, pos2] = stock.loading_position ? stock.loading_position.split(',').map(Number) : [0, 0];
-        //   return {
-        //     loadingFloor: stock.loading_floor,
-        //     loadingPosition1: pos1,
-        //     loadingPosition2: pos2,
-        //   };
-        // });
-        // console.log("스톡스", stocks);
 
 
   // 1006수정
@@ -132,15 +115,13 @@ const Warehouse = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, [wh_seq, updateIn, updateOut]);
 
   // useEffect -> warehouseData
   useEffect(() => {
     if (Object.keys(warehouseData).length > 1) {
-      console.log("지금!");
-      console.log(Object.keys(warehouseData));
 
       appInstance.current = new App(
         warehouseData.warehouseWidth,
@@ -151,7 +132,7 @@ const Warehouse = () => {
         warehouseData.clickRackSeq
       );
     } else {
-      console.log("error");
+      console.error("error");
     }
   }, [warehouseData]);
 
@@ -170,11 +151,7 @@ const Warehouse = () => {
         canMoveItem
       );
       return newCanAddItem; // return으로 canAddItem설정
-    }); // state일때의 state 콜백
-
-    // setCanAddItem(!canAddItem);
-    // setCanAddRack(!canAddItem);
-    console.log("짐 추가 클릭");
+    });
   }
 
   function moveLoading() {
@@ -207,7 +184,6 @@ const Warehouse = () => {
   }, []);
 
   const inPositionClick = () => {
-    console.log('위치 선택 완료 클릭', getItem, clickRackSeq);
     let positionData = {
       stock_seq: stock_seq,
       x: getItem.itemX,

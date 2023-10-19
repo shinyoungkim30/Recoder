@@ -18,7 +18,7 @@ const App = () => {
         <Option value="quarter">1분기</Option>
         <Option value="year">1년</Option>
       </Select>
-      <PickerWithType type={type} onChange={(value) => console.log(value)} />
+      <PickerWithType type={type} />
     </Space>
   );
 };
