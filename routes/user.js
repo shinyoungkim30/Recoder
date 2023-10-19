@@ -19,6 +19,7 @@ router.get('/test', async (req, res, next) => {
 // 로그인한 상태에서 사용자 정보 불러오기 (로그인 안하면 null 리턴)
 router.get('/', async (req, res, next) => { // GET /user
   try {
+    console.log('로그인 클릭', req.user);
     if (req.user) {
       const fullUserWithoutPassword = await User.findOne({
         where: { user_id: req.user.user_id },

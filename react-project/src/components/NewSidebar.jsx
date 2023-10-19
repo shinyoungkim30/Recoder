@@ -64,7 +64,7 @@ const items = [
 
 // submenu keys of first level
 const rootSubmenuKeys = ["sub1", "sub2", "sub3", "sub4", "sub5", "sub6"];
-const App = ({selectWhSeq,setSelectWgSeq, wareName}) => {
+const App = ({userNick, comName, selectWhSeq, setSelectWgSeq, wareName}) => {
   const [openKeys, setOpenKeys] = useState(["sub1"]);
   const onOpenChange = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -110,7 +110,7 @@ const App = ({selectWhSeq,setSelectWgSeq, wareName}) => {
 
   return (
     <div id="menu_div">
-      <div id="sidebar-top">스마트 윤영현님 안녕하세요</div>
+      <div id="sidebar-top">{comName} {userNick}님 안녕하세요</div>
       <div id ="sidebar-wh">
           <span>접속창고 {wareName}</span>
           </div>

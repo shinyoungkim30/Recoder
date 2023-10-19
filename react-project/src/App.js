@@ -23,6 +23,7 @@ import Notice  from './components/Notice';
 import axios from 'axios'
 import WareManageSelect from './components/WareManageSelect';
 import InWarehouse from './components/InWarehouse';
+import GotoMain from './components/GotoMain'
 
 const App = () => {
 
@@ -30,6 +31,8 @@ const App = () => {
   const [comSeq, setComSeq] = useState(0);
   const [newWareData, setNewWareData] = useState({})
   const [wareName,setWareName] = useState(['광주_광산구_01A'])
+  const [userNick, setUserNick] = useState('');
+  const [comName, setComName] = useState('');
 
   const [selectWhSeq,setSelectWhSeq] = useState([])
   //혜주 추가 - 바코드 값 관리
@@ -44,6 +47,8 @@ const App = () => {
       console.log(res);
       if (res.data) {
         setUid(true)
+        setUserNick(res.data.user_nick)
+        setComName(res.data.Company.com_name)
         setComSeq(res.data.com_seq)
       }
     })
@@ -57,12 +62,8 @@ const App = () => {
       { uid ? (
         <div>
           <Routes>
-            {/* 개발 끝나면 지워주세요 */}
-            {/* <Route index element={ <Login /> } />
-            <Route path='/join' element={ <Join /> } />
-            <Route path='/register/company' element={ <RegisterCompany /> } /> */}
-            {/* 개발 끝나면 지워주세요 */}
-            <Route element={ <Layout  wareName={wareName}comSeq={comSeq} selectWhSeq={selectWhSeq} setSelectWhSeq={setSelectWhSeq}/> } >
+            <Route path='*' element={ <GotoMain /> } />
+            <Route element={ <Layout userNick={userNick} comName={comName} wareName={wareName}comSeq={comSeq} selectWhSeq={selectWhSeq} setSelectWhSeq={setSelectWhSeq}/> } >
               {/* 대시보드 */}
               <Route path='/main' element={ <Dashboard selectWhSeq={selectWhSeq} setSelectWhSeq={setSelectWhSeq} comSeq={ comSeq } /> } />
               {/* 재고 */}

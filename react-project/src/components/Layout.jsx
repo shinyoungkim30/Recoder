@@ -3,11 +3,11 @@ import '../css/layout.css'
 import NewSidebar from './NewSidebar'
 import { Outlet } from 'react-router-dom'
 
-const Layout = ({ comSeq, selectWhSeq, setSelectWhSeq, wareName }) => {
+const Layout = ({ comSeq, selectWhSeq, setSelectWhSeq, wareName, userNick, comName }) => {
 
   return (
     <div id='layout-container'>
-      <NewSidebar comSeq={comSeq}  wareName={wareName} selectWhSeq={selectWhSeq} setSelectWhSeq={setSelectWhSeq}/>
+      <NewSidebar userNick={userNick} comName={comName} comSeq={comSeq}  wareName={wareName} selectWhSeq={selectWhSeq} setSelectWhSeq={setSelectWhSeq}/>
       <Outlet />
     </div>
   )
