@@ -10,7 +10,7 @@ const Warehouse = () => {
 
   const nav = useNavigate(); 
 
-  const inSocket = io.connect('http://localhost:8000/in', {
+  const inSocket = io.connect('http://13.124.126.209:80/in', {
     path: '/socket.io'
   });
   inSocket.on('updateIn', (data) => {
@@ -22,7 +22,7 @@ const Warehouse = () => {
       }
     }
   });
-  const outSocket = io.connect('http://localhost:8000/out', {
+  const outSocket = io.connect('http://13.124.126.209:80/out', {
     path: '/socket.io'
   });
   outSocket.on('updateOut', (data) => {
@@ -71,10 +71,9 @@ const Warehouse = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`http://localhost:8000/warehouse/${wh_seq}`),
-      axios.get(`http://localhost:8000/rack/${wh_seq}`),
-      // axios.get(`http://localhost:8000/stock/${wh_seq}`),
-      axios.get(`http://localhost:8000/stock/show/${wh_seq}`),
+      axios.get(`http://13.124.126.209:80/warehouse/${wh_seq}`),
+      axios.get(`http://13.124.126.209:80/rack/${wh_seq}`),
+      axios.get(`http://13.124.126.209:80/stock/show/${wh_seq}`),
     ])
       .then(([warehouseRes, rackRes, stockRes]) => {
         const racks = rackRes.data.map((rack) => ({
@@ -174,7 +173,7 @@ const Warehouse = () => {
   // 입고페이지에서 선택한 상품 정보 요청
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/stock/ware/${stock_seq}`)
+      .get(`http://13.124.126.209:80/stock/ware/${stock_seq}`)
       .then((res) => {
         setStockName(res.data.stock_name);
       })
@@ -192,7 +191,7 @@ const Warehouse = () => {
       rack_seq: clickRackSeq.rack_seq
     }
     if (clickRackSeq.rack_seq !== 0) {
-      axios.patch('http://localhost:8000/in/position', positionData)
+      axios.patch('http://13.124.126.209:80/in/position', positionData)
       .then((res) => {
         if (res.data === 'ok') {
           nav('/in/loading')

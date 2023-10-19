@@ -32,11 +32,9 @@ const Warehouse = () => {
 	// useEffect -> wh_seq
 	useEffect(() => {
 		Promise.all([
-			axios.get(`http://localhost:8000/warehouse/${wh_seq}`),
-			axios.get(`http://localhost:8000/rack/${wh_seq}`),
-			// axios.get(`http://localhost:8000/stock/${wh_seq}`),
-			// axios.get(`http://localhost:8000/stock/show/${comSeq}`)
-			axios.get(`http://localhost:8000/stock/show/${wh_seq}`)
+			axios.get(`http://13.124.126.209:80/warehouse/${wh_seq}`),
+			axios.get(`http://13.124.126.209:80/rack/${wh_seq}`),
+			axios.get(`http://13.124.126.209:80/stock/show/${wh_seq}`)
 		])
 			.then(([warehouseRes, rackRes, stockRes]) => {
 				const racks = rackRes.data.map((rack) => ({

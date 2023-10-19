@@ -34,12 +34,12 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
   const sendData = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/out/create/loading",
+        "http://13.124.126.209:80/out/create/loading",
         outPlus
       );
 
       if (response.status === 200) {
-        window.location.href = "http://localhost:3000/out/create";
+        window.location.href = "http://13.124.126.209:80/out/create";
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -60,7 +60,7 @@ function Out_01({selectWhSeq,setSelectWhSeq}) {
   const getOutStock = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/out/create",
+        "http://13.124.126.209:80/out/create",
         outData
       );
 

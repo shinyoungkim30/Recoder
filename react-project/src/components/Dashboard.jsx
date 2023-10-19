@@ -22,13 +22,13 @@ const Dashboard = ({ comSeq,selectWhSeq,setSelectWhSeq}) => {
   const [isOutClick, setIsOutClick] = useState(true);
 
   const getInData = () => {
-    return axios.get(`http://localhost:8000/in/${comSeq}/B`);
+    return axios.get(`http://13.124.126.209:80/in/${comSeq}/B`);
   };
   const getStockData = () => {
-    return axios.get(`http://localhost:8000/in/${comSeq}/I`);
+    return axios.get(`http://13.124.126.209:80/in/${comSeq}/I`);
   };
   const getOutData = () => {
-    return axios.get(`http://localhost:8000/in/${comSeq}/O`);
+    return axios.get(`http://13.124.126.209:80/in/${comSeq}/O`);
   };
 
   useEffect(() => {

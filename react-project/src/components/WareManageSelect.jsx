@@ -9,7 +9,7 @@ const WareManageSelect = ({ comSeq, selectWhSeq, setSelectWhSeq,wareName,setWare
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/ware/manage/${comSeq}`)
+      .get(`http://13.124.126.209:80/ware/manage/${comSeq}`)
       .then((res) => {
         setWarehouseList(res.data);
       })

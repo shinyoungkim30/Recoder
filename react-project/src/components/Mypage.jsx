@@ -31,7 +31,7 @@ function GridComplexExample({ userNick, parentComName }) {
 
   useEffect(() => {
     axios
-      .patch("http://localhost:8000/user", updateUserData)
+      .patch("http://13.124.126.209:80/user", updateUserData)
       .then((res) => {
         if (res.data === "ok") {
           alert("업데이트가 완료되었습니다.");
@@ -57,11 +57,11 @@ function GridComplexExample({ userNick, parentComName }) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/company", registerComData)
+      .post("http://13.124.126.209:80/company", registerComData)
       .then((res) => {
         if (res.data === "ok") {
           alert("기업 등록이 완료되었습니다.");
-          window.location.href = "http://localhost:3000/main";
+          window.location.href = "http://13.124.126.209:80/main";
         } else {
           alert(`${res.data}`);
         }

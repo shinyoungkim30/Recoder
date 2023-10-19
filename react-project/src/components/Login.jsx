@@ -25,10 +25,10 @@ const Login = () => {
 
   useEffect(() => {
     if (userData.user_id !== undefined) {
-      axios.post('http://localhost:8000/user/login', userData)
+      axios.post('http://13.124.126.209:80/user/login', userData)
         .then((res) => {
           if (res.data.user_id) {
-            window.location.href = 'http://localhost:3000/ware/select'
+            window.location.href = 'http://13.124.126.209:80/ware/select'
           }
         })
         .catch((err) => {

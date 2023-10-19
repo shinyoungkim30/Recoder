@@ -85,7 +85,7 @@ function Barcode({ inputItem, setInputItem }) {
       barcode: barcodeData,
       com_seq: com_seq
     };
-    axios.post('http://localhost:8000/in/barcode', bData)
+    axios.post('http://13.124.126.209:80/in/barcode', bData)
       .then(response => {
         nav('/in/create');
       })

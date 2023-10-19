@@ -80,7 +80,6 @@ router.get('/:com_seq/:limit/:offset', async (req, res, next) => {
   }
 })
 
-// warehouse.jsx axios.get(`http://localhost:8000/stock/show/${wh_seq}`) 요청
 router.get('/show/:wh_seq', async (req, res) => {
   console.log("제발가져와주라help", req.params.wh_seq);
   // let wh_seq = req.params.wh_seq

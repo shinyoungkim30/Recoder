@@ -25,22 +25,22 @@ const Dashboard = ({ comSeq, selectWhSeq, setSelectWhSeq }) => {
   const [stockListCnt, setStockListCnt] = useState(0);
 
   const getInData = () => {
-    return axios.get(`http://localhost:8000/in/${comSeq}/B`);
+    return axios.get(`http://13.124.126.209:80/in/${comSeq}/B`);
   };
   const getStockData = () => {
-    return axios.get(`http://localhost:8000/in/${comSeq}/I`);
+    return axios.get(`http://13.124.126.209:80/in/${comSeq}/I`);
   };
   const getOutData = () => {
-    return axios.get(`http://localhost:8000/in/${comSeq}/O`);
+    return axios.get(`http://13.124.126.209:80/in/${comSeq}/O`);
   };
   const getInDataCnt = () => {
-    return axios.get(`http://localhost:8000/in/cnt/${comSeq}/B`);
+    return axios.get(`http://13.124.126.209:80/in/cnt/${comSeq}/B`);
   };
   const getStockDataCnt = () => {
-    return axios.get(`http://localhost:8000/in/cnt/${comSeq}/I`);
+    return axios.get(`http://13.124.126.209:80/in/cnt/${comSeq}/I`);
   };
   const getOutDataCnt = () => {
-    return axios.get(`http://localhost:8000/in/cnt/${comSeq}/O`);
+    return axios.get(`http://13.124.126.209:80/in/cnt/${comSeq}/O`);
   };
 
   useEffect(() => {

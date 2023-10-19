@@ -9,7 +9,7 @@ import { uploadFile } from "../api/fileAPI";
 import io from 'socket.io-client'
 
 function In_02({ selectWhSeq, setSelectWhSeq }) {
-  const inSocket = io.connect('http://localhost:8000/in', {
+  const inSocket = io.connect('http://13.124.126.209:80/in', {
     path: '/socket.io'
   });
   inSocket.on('updateIn', (data) => {
@@ -48,7 +48,7 @@ function In_02({ selectWhSeq, setSelectWhSeq }) {
 
   const getList = () => {
     axios
-      .post("http://localhost:8000/in/get/loading", { com_seq })
+      .post("http://13.124.126.209:80/in/get/loading", { com_seq })
       .then((response) => {
         setLoadingList(response.data);
       })
@@ -64,10 +64,10 @@ function In_02({ selectWhSeq, setSelectWhSeq }) {
     const stock_seq = { stock_seq: record.stock_seq };
 
     axios
-      .post("http://localhost:8000/in/del/loaing", stock_seq)
+      .post("http://13.124.126.209:80/in/del/loaing", stock_seq)
       .then((res) => {
         if (res.data[0] > 0) {
-          window.location.href = "http://localhost:3000/in/loading";
+          window.location.href = "http://13.124.126.209:80/in/loading";
         }
       })
       .catch((err) => {
@@ -87,10 +87,10 @@ function In_02({ selectWhSeq, setSelectWhSeq }) {
   const Loading = (record) => {
 
     axios
-      .post("http://localhost:8000/in/loaing", loadingData)
+      .post("http://13.124.126.209:80/in/loaing", loadingData)
       .then((res) => {
         if (res.data[0] > 0) {
-          window.location.href = "http://localhost:3000/in/loading";
+          window.location.href = "http://13.124.126.209:80/in/loading";
         }
       })
       .catch((err) => {

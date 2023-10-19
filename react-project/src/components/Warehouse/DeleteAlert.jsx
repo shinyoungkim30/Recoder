@@ -28,7 +28,7 @@ export default function AlertDialog({ wh_seq }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/stock/stockcount/${wh_seq}`)
+      .get(`http://13.124.126.209:80/stock/stockcount/${wh_seq}`)
       .then((res) => {
         if (res.data > 1) {
           setExistStock(true);
@@ -41,9 +41,9 @@ export default function AlertDialog({ wh_seq }) {
 
   useEffect(() => {
     if (deleteAgree === '삭제') {
-      axios.delete(`http://localhost:8000/warehouse/${wh_seq}`)
+      axios.delete(`http://13.124.126.209:80/warehouse/${wh_seq}`)
       .then((res) => {
-        window.location.href = 'http://localhost:3000/ware/manage'
+        window.location.href = 'http://13.124.126.209:80/ware/manage'
       })
       .catch((err) => {
         console.error(err);

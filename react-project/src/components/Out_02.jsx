@@ -16,7 +16,7 @@ const Out_02 = ({ comSeq, selectWhSeq, setSelectWhSeq }) => {
   const [pageNum, setPageNum] = useState(1);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/wh_name/${comSeq}`)
+    axios.get(`http://13.124.126.209:80/wh_name/${comSeq}`)
     .then((res) => {
     })
     .catch((err) => {
@@ -42,7 +42,7 @@ const Out_02 = ({ comSeq, selectWhSeq, setSelectWhSeq }) => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:8000/out/controll",
+        "http://13.124.126.209:80/out/controll",
         userData
       );
 

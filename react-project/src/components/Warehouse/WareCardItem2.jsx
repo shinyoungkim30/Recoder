@@ -64,7 +64,7 @@ const WareCardItem2 = ({
   // wh_seq를 가지고 해당 창고 정보 불러오기
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/warehouse/${wh_seq}`)
+      .get(`http://13.124.126.209:80/warehouse/${wh_seq}`)
       .then((res) => {
         setWarehouseInfo(res.data);
         setWarehouseWidth(parseInt(res.data.wh_width));

@@ -24,7 +24,7 @@ function In_HJ({selectWhSeq,setSelectWhSeq}) {
       com_seq: com_seq,
     };
     axios
-      .post("http://localhost:8000/in/create", inData)
+      .post("http://13.124.126.209:80/in/create", inData)
       .then((response) => {
         setBcData(response.data);
       })
@@ -43,10 +43,10 @@ function In_HJ({selectWhSeq,setSelectWhSeq}) {
       stock_seq: record.stock_seq,
     };
     axios
-      .post("http://localhost:8000/in/send/loading", pickBc)
+      .post("http://13.124.126.209:80/in/send/loading", pickBc)
       .then((res) => {
         if (res.data[0] > 0) {
-          window.location.href = "http://localhost:3000/in/create";
+          window.location.href = "http://13.124.126.209:80/in/create";
         }
       })
       .catch((err) => {

@@ -19,7 +19,7 @@ function BarcodeReader() {
   const insertStock = () => {
 
     // api 추가
-    axios.post('http://localhost:8000/stock/barcode', data)
+    axios.post('http://13.124.126.209:80/stock/barcode', data)
     .then((res) => {
     })
     .catch((err) => {

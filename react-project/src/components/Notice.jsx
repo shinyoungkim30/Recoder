@@ -59,8 +59,8 @@ function Notice({ selectWhSeq, setSelectWhSeq }) {
 
     axios
       .all([
-        axios.post("http://localhost:8000/notice/create", userData),
-        axios.post("http://localhost:8000/notice/alarm", userData),
+        axios.post("http://13.124.126.209:80/notice/create", userData),
+        axios.post("http://13.124.126.209:80/notice/alarm", userData),
       ])
       .then(
         axios.spread((res1, res2) => {
@@ -77,10 +77,10 @@ function Notice({ selectWhSeq, setSelectWhSeq }) {
   // 알림내용 변경 함수
   const changeAlaram = () => {
     axios
-      .post("http://localhost:8000/notice/change", changeName)
+      .post("http://13.124.126.209:80/notice/change", changeName)
       .then((response) => {
         // 페이지 새로고침 해주기
-        window.location.href = "http://localhost:3000/notice/create";
+        window.location.href = "http://13.124.126.209:80/notice/create";
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {

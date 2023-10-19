@@ -85,22 +85,6 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 				parseInt(localStorage.getItem('rackFloor')) // 로컬 스토리지에서 rackFloor값 불러오기!
 			);
 		}
-
-		// let url = "http://localhost:8000/rack";
-		// axios
-		// .post(url, rack_info)
-		// .then((res) => {
-		// 	if (appInstance.current) {
-		// 		appInstance.current.setupMouseEvents(
-		// 			res.data.rack_width,
-		// 			res.data.rack_length,
-		// 			parseInt(localStorage.getItem('rackFloor')) // 로컬 스토리지에서 rackFloor값 불러오기!
-		// 			);
-		// 		}
-		// })
-		// .catch((error) => {
-		// 	console.error(error);
-		// });
 	};
 
 	const createLoading = (e) => {
@@ -123,17 +107,9 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 			length: localStorage.getItem("ware_length")==null || localStorage.getItem("ware_length")==undefined ? 1 : localStorage.getItem("ware_length") , 
 			comSeq: comSeq
 		};
-		let url = "http://localhost:8000/ware";
+		let url = "http://13.124.126.209:80/ware";
 		var response = await axios.post(url, warehouse_info)
 		seq = (await response).data.wh_seq;
-
-		// .then((res) => {
-		// 	// localStorage.setItem('warehouse', Json.stringify(res.data));
-		// 	setNewWareData(res.data)
-		// })
-		// .catch((error) => {
-		// 	console.error(error);
-		// });
 
 		let _메쉬배열 = [...메쉬배열]
 		_메쉬배열.forEach(item => {
@@ -149,7 +125,7 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 			})
 		})
 
-		url = "http://localhost:8000/rack";
+		url = "http://13.124.126.209:80/rack";
 		axios
 		.post(url, result)
 		.then((res) => {
@@ -186,7 +162,7 @@ const CreateWarehouse = ({ comSeq, newWareData }) => {
 		// 로컬 스토리지에 rackFloor값 저장
 		localStorage.setItem("rackFloor", rackFloor);
 
-		let url = "http://localhost:8000/rack";
+		let url = "http://13.124.126.209:80/rack";
 		axios
 			.post(url, rack_info)
 			.then((res) => {

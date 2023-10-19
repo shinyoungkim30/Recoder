@@ -23,7 +23,7 @@ const Join = () => {
     // 이메일 중복확인
     const checkDuplicate = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/user/checkid', {
+            const response = await axios.post('http://13.124.126.209:80/user/checkid', {
                 id: formData.user_id,
             });
             if (response.data === '회원가입 가능') {
@@ -57,7 +57,7 @@ const Join = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8000/user', {
+            const response = await axios.post('http://13.124.126.209:80/user', {
                 user_id: formData.user_id,
                 user_pw: formData.user_pw,
                 user_nick: formData.user_nick,
@@ -81,7 +81,7 @@ const Join = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/company/${comNum}`)
+        axios.get(`http://13.124.126.209:80/company/${comNum}`)
             .then((res) => {
                 if (res.data[0]) {
                     setComName(res.data[0].com_name)

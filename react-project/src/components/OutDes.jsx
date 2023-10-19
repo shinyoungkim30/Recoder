@@ -31,7 +31,7 @@ function OutDes() {
 
     }
     try {
-      const response = await axios.post('http://localhost:8000/out/des/name', userData)
+      const response = await axios.post('http://13.124.126.209:80/out/des/name', userData)
 
       if (response.status === 200) {
 
@@ -74,7 +74,7 @@ function OutDes() {
     const stockNameData = async () => {
 
       try {
-        const response = await axios.post('http://localhost:8000/out/des/count', stock_name)
+        const response = await axios.post('http://13.124.126.209:80/out/des/count', stock_name)
 
         if (response.status === 200) {
 

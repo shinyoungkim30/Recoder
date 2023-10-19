@@ -8,10 +8,10 @@ const Logout = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/user/logout")
+      .post("http://13.124.126.209:80/user/logout")
       .then((res) => {
         if (res.data === "ok") {
-          window.location.href = "http://localhost:3000";
+          window.location.href = "http://13.124.126.209:80";
         } 
       })
       .catch((err) => {

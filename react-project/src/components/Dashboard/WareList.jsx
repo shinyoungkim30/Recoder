@@ -8,7 +8,7 @@ const WareList = ({ comSeq }) => {
   const [warehouseList, setWarehouseList] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/ware/shortList/${comSeq}`)
+    axios.get(`http://13.124.126.209:80/ware/shortList/${comSeq}`)
     .then((res) => {
       setWarehouseList(res.data);
     })

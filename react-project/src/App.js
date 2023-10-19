@@ -42,7 +42,7 @@ const App = () => {
   }]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/user')
+    axios.get('http://13.124.126.209:80/user')
     .then((res) => {
       if (res.data) {
         setUid(true)

@@ -14,7 +14,7 @@ function In_01({ inputItem,setInputItem }) {
     const barCode = inputItem.map(item => item.title);
 
     try {
-      const response = await axios.post('http://localhost:8000/in/create', { barCode });
+      const response = await axios.post('http://13.124.126.209:80/in/create', { barCode });
 
       if (response.status === 200) {
         setGetList(response.data)

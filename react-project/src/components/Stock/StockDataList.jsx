@@ -45,7 +45,7 @@ const StockDataList = ({ stockList }) => {
         <img
           src={`${text}`}
           onError={(e) => {
-            e.target.src = 'http://localhost:8000/img/default.jpg'
+            e.target.src = 'http://13.124.126.209:80/img/default.jpg'
           }}
           style={{
             width: 60,

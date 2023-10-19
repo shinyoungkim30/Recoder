@@ -14,7 +14,7 @@ const StockSelect = ({ comSeq }) => {
   const [pageNum, setPageNum] = useState(1)
 
   const fetchStockList = () => {
-    axios.get(`http://localhost:8000/stock/${comSeq}/${intValue}/${pageNum}`)
+    axios.get(`http://13.124.126.209:80/stock/${comSeq}/${intValue}/${pageNum}`)
     .then((res) => {
       setStockList(res.data)
     })
@@ -24,7 +24,7 @@ const StockSelect = ({ comSeq }) => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/stock/${comSeq}`)
+    axios.get(`http://13.124.126.209:80/stock/${comSeq}`)
     .then((res) => {
       setStockCount(res.data.count)
       fetchStockList()      

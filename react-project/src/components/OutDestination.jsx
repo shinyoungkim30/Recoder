@@ -33,7 +33,7 @@ function OutDestination({selectWhSeq}) {
     };
     try {
       const response = await axios.post(
-        "http://localhost:8000/out/des/name",
+        "http://13.124.126.209:80/out/des/name",
         userData
       );
       if (response.status === 200) {
