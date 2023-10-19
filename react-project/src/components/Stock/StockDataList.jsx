@@ -43,7 +43,7 @@ const StockDataList = ({ stockList }) => {
       key: "stock_img",
       render: (text) => (
         <img
-          src={`http://localhost:8000/img/${text}`}
+          src={`${text}`}
           onError={(e) => {
             e.target.src = 'http://localhost:8000/img/default.jpg'
           }}

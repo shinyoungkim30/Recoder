@@ -79,7 +79,7 @@ const App = () => {
               {/* 창고 */}
               <Route path='/ware/manage' element={ <WareManage selectWhSeq={selectWhSeq} setSelectWhSeq={setSelectWhSeq} comSeq={comSeq}/> } />
               {/* 마이페이지 */}
-              <Route path='/mypage' element={ <Mypage /> } />
+              <Route path='/mypage' element={ <Mypage userNick={userNick} parentComName={comName} /> } />
               {/* 로그아웃 */}
               <Route path='/logout' element={ <Logout /> } />
               
